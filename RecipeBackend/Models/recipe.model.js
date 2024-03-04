@@ -10,6 +10,7 @@ const recipeSchema = new mongoose.Schema(
         category: [{ type: String, required: true }],
         cookTime:{type:String},
         imgURL:{type:String},
+        
     }
 )
 

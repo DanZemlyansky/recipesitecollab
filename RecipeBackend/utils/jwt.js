@@ -12,4 +12,14 @@ const verifyToken = (token) => {
     return payload;
 }
 
-module.exports = { generateToken, verifyToken };
+const decodeToken = (token) => {
+    try {
+      const decoded = jwt.verify(token, jwtSecret);
+      return decoded;
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null; // Return null or handle the error appropriately
+    }
+  };
+
+module.exports = { generateToken, verifyToken, decodeToken };
