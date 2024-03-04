@@ -44,9 +44,9 @@ const SignUp = ({ toggleForm }) => {
 
         if (signInResponse.ok) {
           const { token, user } = signInData;
-          localStorage.setItem('token', token); 
-          setUser(user); 
-          navigate('/profile'); 
+          localStorage.setItem('token', token); // Store token in local storage
+          setUser(user); // Set user in context
+          navigate('/profile'); // Redirect to profile page
         } else {
           throw new Error(signInData.error);
         }
@@ -104,7 +104,7 @@ const SignUp = ({ toggleForm }) => {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Box component="form" noValidate onChange={changeHandler} onSubmit={handleRegister} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
@@ -115,8 +115,6 @@ const SignUp = ({ toggleForm }) => {
                     id="fullName"
                     label="Full Name"
                     autoFocus
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -127,8 +125,6 @@ const SignUp = ({ toggleForm }) => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -140,8 +136,6 @@ const SignUp = ({ toggleForm }) => {
                     type="password"
                     id="password"
                     autoComplete="new-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -167,8 +161,6 @@ const SignUp = ({ toggleForm }) => {
                       name="specialty"
                       label="Specialty"
                       id="specialty"
-                      value={specialty}
-                      onChange={(e) => setSpecialty(e.target.value)}
                     />
                   </Grid>
                 )}
