@@ -7,7 +7,7 @@ router.post("/register", user.Register);
 
 router.post("/login", user.Login);
 
-router.get('/getUser', user.getUser)
+router.get('/getUser/:id', user.getUser)
 router.get('/getUsers', user.getUsers)
 
 
