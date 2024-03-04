@@ -3,13 +3,13 @@ const express = require('express');
 const router = express.Router();
 
 
-router.post("/createRecipe", createRecipe);
+router.post("/createRecipe", recipes.createRecipe);
 
-router.get('/getRecipe', getRecipe)
+router.get('/getRecipe', recipes.getRecipe)
 
-router.patch("/editRecipe/:id", updateRecipe);
+router.patch("/editRecipe/:id", recipes.editRecipe);
 
-router.delete("/deleteRecipe/:id", deleteRecipe);
+router.delete("/deleteRecipe/:id", recipes.deleteRecipe);
 
 
 

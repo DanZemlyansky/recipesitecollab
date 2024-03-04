@@ -32,4 +32,4 @@ const deleteRecipe = async(req,res)=>{
 
 }
 
-module.exports = {getRecipe, createRecipe, editRecipe,}
+module.exports = {getRecipe, createRecipe, editRecipe, deleteRecipe}
