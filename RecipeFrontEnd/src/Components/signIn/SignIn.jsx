@@ -7,43 +7,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const defaultTheme = createTheme();
 
-const SignIn = ({ toggleForm }) => {
-  const { setUser } = useContext(UserContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        "http://localhost:3000/api/v1/users/SignIn",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-      const data = await response.json();
-      if (response.ok) {
-        const { token, user } = data;
-        localStorage.setItem("token", token);
-        setUser(user);
-        console.log(data);
-        console.log(token);
-        console.log(user);
-        navigate('/profile');
-      } else {
-        throw new Error(data.error);
-      }
-    } catch (error) {
-      console.error("Signin error:", error.message);
-    }
-    
-  };
-  console.log('Background image path:', 'url(images/White and Blue Minimalist Medical Presentation.png)');
+const SignIn = ({ toggleForm }) => {
+  const { changeHandler, handleLogin } = useContext(UserContext);
+
+  
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -79,7 +47,7 @@ const SignIn = ({ toggleForm }) => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onChange={changeHandler} onSubmit={handleLogin} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -89,8 +57,6 @@ const SignIn = ({ toggleForm }) => {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -101,8 +67,6 @@ const SignIn = ({ toggleForm }) => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
