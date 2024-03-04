@@ -44,9 +44,9 @@ const SignUp = ({ toggleForm }) => {
 
         if (signInResponse.ok) {
           const { token, user } = signInData;
-          localStorage.setItem('token', token); // Store token in local storage
-          setUser(user); // Set user in context
-          navigate('/profile'); // Redirect to profile page
+          localStorage.setItem('token', token); 
+          setUser(user); 
+          navigate('/profile'); 
         } else {
           throw new Error(signInData.error);
         }
