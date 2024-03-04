@@ -1,15 +1,44 @@
-import React from 'react'
-import { TextField } from '@mui/material'
+import React, { useState } from 'react'
+import { TextField, Button } from '@mui/material'
 import "./SearchPage.css"
+import axios from 'axios'
+
+import Sdisplay from '../../Components/searchPage/searchDisplay'
 
 function SearchPage() {
+  const [query, setQuery] = useState('')
+  const [data, setData] = useState({});
+
+  const changeHandler = (e) => {
+    setQuery(e.target.value);
+  }
+
+  const searchRecipes = async (e) => {
+    e.preventDefault();
+
+    await axios.get(`http://localhost:3000/api/v1/recipe/getRecipe?q={query}`)
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      }).catch((err) => {
+        console.log(err, 'Error searching recipes :(');
+      });
+
+
+  }
+
+
+
   return (
     <section id='searchPageWrapper'>
-      <div id='searchField'>
-        <TextField id="standard-basic" label="Standard" variant="standard" />
-      </div>
+      <form id='searchField'>
+        <TextField onChange={changeHandler} id="standard-basic" label="Standard" variant="standard" />
+        <Button onClick={searchRecipes}>Search</Button>
+      </form>
 
-    </section>
+
+      <Sdisplay data={data}></Sdisplay>
+    </section >
   )
 }
 
