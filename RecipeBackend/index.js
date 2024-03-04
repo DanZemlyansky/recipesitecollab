@@ -1,5 +1,21 @@
-const express = require('express');
+const { app } = require("./app");
+
 const mongoose = require('mongoose');
 
 
-mongoose.connect("")
+mongoose.connect("mongodb://localhost:27017/RecipeApp");
+
+mongoose.connect(mongoUrl)
+    .then(() => {
+        console.log("Connected to mongoDB");
+    }).catch(error => {
+        console.log(error);
+    });
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+})
+
+
