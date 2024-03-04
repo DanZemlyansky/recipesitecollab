@@ -8,66 +8,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 const SignUp = ({ toggleForm }) => {
-  const { setUser } = useContext(UserContext);
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
-  const [specialty, setSpecialty] = useState('');
-  const [showSpecialty, setShowSpecialty] = useState(false);
-  const navigate = useNavigate();
+  const {changeHandler,handleRegister} = useContext(UserContext)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const signUpResponse = await fetch('http://localhost:3000/api/v1/users/SignUp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ fullName, email, password, role, specialty }),
-      });
-      const signUpData = await signUpResponse.json();
-  
-
-      if (signUpResponse.ok) {
-        const signInResponse = await fetch('http://localhost:3000/api/v1/users/SignIn', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }), 
-        });
-        const signInData = await signInResponse.json();
-  
-
-        if (signInResponse.ok) {
-          const { token, user } = signInData;
-          localStorage.setItem('token', token); // Store token in local storage
-          setUser(user); // Set user in context
-          navigate('/profile'); // Redirect to profile page
-        } else {
-          throw new Error(signInData.error);
-        }
-      } else {
-        throw new Error(signUpData.error);
-      }
-    } catch (error) {
-      console.error('Sign up or sign in error:', error.message);
-    }
-  };
-  
-  
-
-  const handleRoleChange = (event) => {
-    setRole(event.target.value);
-    if (event.target.value === 'doctor') {
-      setShowSpecialty(true);
-    } else {
-      setShowSpecialty(false);
-      setSpecialty('');
-    }
-  };
+ 
 
   return (
     <ThemeProvider  theme={defaultTheme}>
