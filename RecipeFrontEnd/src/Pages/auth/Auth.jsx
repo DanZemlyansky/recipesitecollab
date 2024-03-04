@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Auth.css"
-import SignIn from "../../Components/signIn/SignIn"
-import SignUp from "../../Components/signUp/SignUp"
+import SignIn from "../../components/signIn/SignIn"
+import SignUp from "../../components/signUp/SignUp"
 import { useState } from 'react';
 
 function Auth() {
