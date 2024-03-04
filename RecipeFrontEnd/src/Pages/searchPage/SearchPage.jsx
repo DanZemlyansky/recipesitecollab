@@ -23,8 +23,6 @@ function SearchPage() {
       }).catch((err) => {
         console.log(err, 'Error searching recipes :(');
       });
-
-
   }
 
 
