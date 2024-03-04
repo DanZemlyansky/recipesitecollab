@@ -25,11 +25,11 @@ const Register = async (req, res) => {
         body.password = hash;
         const user = new User(body);
         user.id = user._id;
-
+        console.log(body);
         await user.save();
         res.status(200).send(user);
     } catch (err) {
-        res.status(400).send("Error, cannot register", err);
+        res.status(400).send("Error, cannot register: " + err.message);
     }
 };
 
