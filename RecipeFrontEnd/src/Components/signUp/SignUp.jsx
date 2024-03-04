@@ -9,66 +9,9 @@ import { useNavigate } from "react-router-dom";
 const defaultTheme = createTheme();
 
 const SignUp = ({ toggleForm }) => {
-  const { setUser } = useContext(UserContext);
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
-  const [specialty, setSpecialty] = useState('');
-  const [showSpecialty, setShowSpecialty] = useState(false);
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const signUpResponse = await fetch('http://localhost:3000/api/v1/users/SignUp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ fullName, email, password, role, specialty }),
-      });
-      const signUpData = await signUpResponse.json();
+ 
+  const { changeHandler, handleRegister } = useContext(UserContext);
   
-
-      if (signUpResponse.ok) {
-        const signInResponse = await fetch('http://localhost:3000/api/v1/users/SignIn', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }), 
-        });
-        const signInData = await signInResponse.json();
-  
-
-        if (signInResponse.ok) {
-          const { token, user } = signInData;
-          localStorage.setItem('token', token); // Store token in local storage
-          setUser(user); // Set user in context
-          navigate('/profile'); // Redirect to profile page
-        } else {
-          throw new Error(signInData.error);
-        }
-      } else {
-        throw new Error(signUpData.error);
-      }
-    } catch (error) {
-      console.error('Sign up or sign in error:', error.message);
-    }
-  };
-  
-  
-
-  const handleRoleChange = (event) => {
-    setRole(event.target.value);
-    if (event.target.value === 'doctor') {
-      setShowSpecialty(true);
-    } else {
-      setShowSpecialty(false);
-      setSpecialty('');
-    }
-  };
 
   return (
     <ThemeProvider  theme={defaultTheme}>
@@ -104,7 +47,7 @@ const SignUp = ({ toggleForm }) => {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Box component="form" noValidate onChange={changeHandler} onSubmit={handleRegister} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
@@ -115,8 +58,6 @@ const SignUp = ({ toggleForm }) => {
                     id="fullName"
                     label="Full Name"
                     autoFocus
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -127,8 +68,6 @@ const SignUp = ({ toggleForm }) => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -140,8 +79,6 @@ const SignUp = ({ toggleForm }) => {
                     type="password"
                     id="password"
                     autoComplete="new-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -167,8 +104,6 @@ const SignUp = ({ toggleForm }) => {
                       name="specialty"
                       label="Specialty"
                       id="specialty"
-                      value={specialty}
-                      onChange={(e) => setSpecialty(e.target.value)}
                     />
                   </Grid>
                 )}
