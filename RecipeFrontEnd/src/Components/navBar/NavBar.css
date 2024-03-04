@@ -4,7 +4,8 @@
 }
 
 .navbar-brand img {
-  height: 4rem;
+  margin-top: 0.5rem;
+  height: 5rem;
 }
 
 .activeNav {
