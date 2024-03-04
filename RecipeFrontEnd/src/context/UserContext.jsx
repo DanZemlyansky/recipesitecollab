@@ -10,7 +10,7 @@ export const UserContext = createContext({
 
 const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
 
   const fetchUserData = async () => {
     try {
