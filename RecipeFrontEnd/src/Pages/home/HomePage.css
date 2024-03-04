@@ -1,0 +1,37 @@
+.blueShape {
+  height: 40.6rem;
+  width: 40.6rem;
+}
+
+.homePageContainer {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.blueShapeDiv {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+}
+
+.plateOfFoodDiv {
+  position: relative;
+  z-index: 2;
+}
+
+.plateOfFood {
+  height: 30rem;
+}
+
+.titleOfHome {
+  font-family: "ITC Benguiat Std", sans-serif;
+  font-size: 6rem;
+  margin-top: 6rem;
+  color: #B67352;
+}
+
+.containerForPlate {
+  display: flex;
+  justify-content: center;
+}
