@@ -82,9 +82,9 @@ const UserProvider = ({ children }) => {
   //   }
   // }, []);
 
-    useEffect(() => {
-      fetchUserData();
-  }, []);
+  //   useEffect(() => {
+  //     fetchUserData();
+  // }, []);
 
   const changeHandler = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });

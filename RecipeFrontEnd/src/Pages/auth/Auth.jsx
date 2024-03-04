@@ -1,7 +1,7 @@
-import React from 'react'
-import "./Auth.css"
-import SignIn from "../../Components/signIn/SignIn"
-import SignUp from "../../Components/signUp/SignUp"
+import React from 'react';
+import "./Auth.css";
+import SignIn from "../../Components/signIn/SignIn";
+import SignUp from "../../Components/signUp/SignUp";
 import { useState } from 'react';
 
 function Auth() {
@@ -13,9 +13,9 @@ function Auth() {
 
   return (
     <div className='authCon'>
-      {<div> <SignIn toggleForm={toggleForm} /> <SignUp toggleForm={toggleForm} /></div>}
+      {showSignIn ? <SignIn toggleForm={toggleForm} /> : <SignUp toggleForm={toggleForm} />}
     </div>
   );
 }
 
-export default Auth
+export default Auth;

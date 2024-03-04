@@ -52,11 +52,11 @@ const SignUp = ({ toggleForm }) => {
                 <Grid item xs={12}>
                   <TextField 
                     autoComplete="fname"
-                    name="fullname"
+                    name="username"
                     required
                     fullWidth
                     id="fullName"
-                    label="Full Name"
+                    label="User Name"
                     autoFocus
                   />
                 </Grid>
