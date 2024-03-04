@@ -13,7 +13,7 @@ function Auth() {
 
   return (
     <div className='authCon'>
-{showSignIn ? <SignIn toggleForm={toggleForm} /> : <SignUp toggleForm={toggleForm} />}
+      {<div> <SignIn toggleForm={toggleForm} /> <SignUp toggleForm={toggleForm} /></div>}
     </div>
   );
 }
