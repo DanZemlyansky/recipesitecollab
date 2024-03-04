@@ -54,9 +54,9 @@ const NavBar = () => {
             />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto navbar-light">
-                <Nav.Link href="/appointments">Appointments</Nav.Link>
+                <Nav.Link href="/recipes">Recipes</Nav.Link>
                 <Nav.Link href="/labResults">Lab Results</Nav.Link>
-                {user.role === 'doctor' && (
+                {user.role === 'admin' && (
                   <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                 )}
               </Nav>
@@ -94,6 +94,8 @@ const NavBar = () => {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto navbar-light">
                 <Nav.Link href="/auth">Auth</Nav.Link>
+                <Nav.Link href="/recipes">Recipes</Nav.Link>
+                <Nav.Link href="/search">Search</Nav.Link>
               </Nav>
               <Nav className="ml-auto">
                 <div className="AuthDivNav"></div>
