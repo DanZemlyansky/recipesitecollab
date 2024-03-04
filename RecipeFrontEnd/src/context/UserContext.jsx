@@ -88,6 +88,7 @@ const UserProvider = ({ children }) => {
 
   const changeHandler = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
+    console.log(userData);
   };
 
   const shared = {
@@ -98,7 +99,6 @@ const UserProvider = ({ children }) => {
     handleLogout
   };
 
-  console.log(user)
   return (
     <UserContext.Provider value={shared}>
       {children}

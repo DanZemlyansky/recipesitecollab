@@ -10,6 +10,7 @@ const defaultTheme = createTheme();
 
 const SignIn = ({ toggleForm }) => {
   const { changeHandler, handleLogin } = useContext(UserContext);
+  
 
   
 
@@ -47,8 +48,8 @@ const SignIn = ({ toggleForm }) => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onChange={changeHandler} onSubmit={handleLogin} sx={{ mt: 1 }}>
-              <TextField
+            <Box component="form" noValidate  sx={{ mt: 1 }} onChange={changeHandler}  onSubmit={handleLogin}>
+              <TextField 
                 margin="normal"
                 required
                 fullWidth

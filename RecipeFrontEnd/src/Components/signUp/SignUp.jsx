@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 const SignUp = ({ toggleForm }) => {
+  
   const {changeHandler,handleRegister} = useContext(UserContext)
 
  
@@ -47,11 +48,11 @@ const SignUp = ({ toggleForm }) => {
               Sign up
             </Typography>
             <Box component="form" noValidate onChange={changeHandler} onSubmit={handleRegister} sx={{ mt: 3 }}>
-              <Grid container spacing={2}>
+              <Grid container spacing={2} >
                 <Grid item xs={12}>
-                  <TextField
+                  <TextField 
                     autoComplete="fname"
-                    name="fullName"
+                    name="fullname"
                     required
                     fullWidth
                     id="fullName"
@@ -80,32 +81,6 @@ const SignUp = ({ toggleForm }) => {
                     autoComplete="new-password"
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth required>
-                    <InputLabel id="role-label">Role</InputLabel>
-                    <Select
-                      labelId="role-label"
-                      id="role"
-                      value={role}
-                      onChange={handleRoleChange}
-                    >
-                      <MenuItem value="admin">Admin</MenuItem>
-                      <MenuItem value="doctor">Doctor</MenuItem>
-                      <MenuItem value="patient">Patient</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                {showSpecialty && (
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name="specialty"
-                      label="Specialty"
-                      id="specialty"
-                    />
-                  </Grid>
-                )}
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={<Checkbox value="terms" color="primary" />}
