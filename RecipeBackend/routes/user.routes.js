@@ -3,15 +3,12 @@ const express = require('express');
 const router = express.Router();
 
 
-router.post("/register", register);
+router.post("/register", user.Register);
 
-router.post("/login", login);
+router.post("/login", user.Login);
 
-router.get('/login', getUser)
-
-router.patch("/:id", updateUser);
-
-router.delete("/:id", deleteUser);
+router.get('/getUser', user.getUser)
+router.get('/getUsers', user.getUsers)
 
 
 
