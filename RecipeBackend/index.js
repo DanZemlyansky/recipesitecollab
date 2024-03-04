@@ -3,9 +3,8 @@ const { app } = require("./app");
 const mongoose = require('mongoose');
 
 
-mongoose.connect("mongodb://localhost:27017/RecipeApp");
 
-mongoose.connect(mongoUrl)
+mongoose.connect("mongodb://localhost:27017/RecipeApp")
     .then(() => {
         console.log("Connected to mongoDB");
     }).catch(error => {

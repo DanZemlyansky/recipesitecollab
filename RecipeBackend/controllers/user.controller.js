@@ -1,5 +1,5 @@
 const { User } = require('../Models/user.model')
-const bcrypt = require("bcryptjs")
+const bcrypt = require('bcrypt');
 const { generateToken , verifyToken} = require('../utils/jwt')
 
 const getUsers = async(req,res)=>{
