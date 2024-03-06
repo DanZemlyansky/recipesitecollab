@@ -57,20 +57,28 @@ const getCookBookById = async (req, res) => {
   };
   
 
-  const addRecipe = async (req, res) =>{
-    const { cookBookId } = req.body;
+  const addRecipe = async (req, res) => {
+    const { cookBookId, recipeId } = req.body;
     try {
-    
-      const user = await User.findById(req.user.id);
 
-      const cookBook = await Cookbook.findById(cookBookId);
+        const cookBook = await Cookbook.findById(cookBookId);
+        if (!cookBook) {
+            return res.status(404).send("Cookbook not found");
+        }
 
-      await cookBook.save();
-      res.status(200).send("Product added to shopping cart successfully");
+        const newRecipe = {
+            recipeId: recipeId
+        };
+
+        cookBook.recipes.push(newRecipe);
+
+        await cookBook.save();
+        res.status(200).send("Recipe added to cookbook successfully");
     } catch (err) {
-      console.error(err);
-      res.status(400).send("Cannot add item, bad request");
+        console.error(err);
+        res.status(400).send("Cannot add recipe, bad request");
     }
-  };
+};
+
 
   module.exports = {getCookBooks, getCookBookById, createCookBook, updateCookBook, deleteCookBook, addRecipe }
