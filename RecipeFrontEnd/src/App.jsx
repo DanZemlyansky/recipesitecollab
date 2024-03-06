@@ -10,7 +10,7 @@ import HomePage from "./Pages/home/HomePage";
 import Auth from "./Pages/auth/Auth";
 import "./App.css";
 import Footer from "./Components/footer/Footer";
-
+import CreateRecipe from './Pages/createRecipe/CreateRecipe'
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -53,37 +53,37 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-      <div>
-           <NavBar/>
-      </div>
-      <div>
-      {user ? (
-          <Routes>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/auth" element={<HomePage />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/recipes" element={<Recipes />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
-            <Route path="/" element={<HomePage />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/auth" element={<Auth />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
-            <Route path="/dashboard" element={<HomePage />} />
-            <Route path="/recipes" element={<Recipes />} />
-            <Route path="/search" element={<SearchPage/>} />
-            <Route path="/profile" element={<HomePage />} />
-            <Route path="/createR" element={<CreateRecipe />} />
-          </Routes>
-        )}
-      </div>
-      <Footer />
-   </BrowserRouter>
+        <div>
+          <NavBar />
+        </div>
+        <div>
+          {user ? (
+            <Routes>
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/auth" element={<HomePage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/recipes" element={<Recipes />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              {/* <Route path="*" element={<NotFound />} /> */}
+              <Route path="/" element={<HomePage />} />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/auth" element={<Auth />} />
+              {/* <Route path="*" element={<NotFound />} /> */}
+              <Route path="/dashboard" element={<HomePage />} />
+              <Route path="/recipes" element={<Recipes />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/profile" element={<HomePage />} />
+              <Route path="/createR" element={<CreateRecipe />} />
+            </Routes>
+          )}
+        </div>
+        <Footer />
+      </BrowserRouter>
 
     </div>
   );

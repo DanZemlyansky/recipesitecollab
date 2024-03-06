@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./HomePage.css";
@@ -5,26 +6,20 @@ import FadeInSection from "../../context/FadeInContext";
 import RecipesIdeasCard from "../../Components/recipesIdeasCard/RecipesIdeasCard";
 
 function HomePage() {
-  const categories = ['Chicken', 'Indian food', 'Rice'];
 
-  const [catCards, setCatCards] = useState([]);
-  const [catCard, setCatCard] = useState({});
 
-  const getCategories = async () => {
-    try {
-      const responses = await Promise.all(categories.map(async (category) => {
-        const response = await axios.get(`http://localhost/3000/api/v1/recipe/getCategory/${category}`);
-        return response.data;
-      }));
-      setCatCards(responses);
-    } catch (error) {
-      console.error('Failed to fetch one or more categories:', error);
-    }
-  };
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+
+  const categories = ['Breakfast', 'Fries', 'Pasta' , 'Meat' , 'Chicken' , 'Pizza' , 'Dessert'];
+
+
+
+
+
+
+
+
+
 
   return (
     <div>
@@ -47,12 +42,14 @@ function HomePage() {
             <button className="buttonExplore">Explore</button>
           </div>
         </div>
+
       </div>
       <FadeInSection>
         <div className="homePageSecondPart">
+
           <div className="recipeTitleDiv">
             <h1 className="recipesIdeasTitle">Recipes Ideas</h1>
-          </div>
+          </div  >
           <div className="recipesIdeasCardDiv">
             <RecipesIdeasCard name="Breakfast" src="src/assets/images/breakfast.png" />
             <RecipesIdeasCard name="Fries" src="src/assets/images/frenchFries.png" />
@@ -69,3 +66,5 @@ function HomePage() {
 }
 
 export default HomePage;
+
+

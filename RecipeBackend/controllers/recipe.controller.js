@@ -14,14 +14,33 @@ const getRecipeByCategory = async (req, res) => {
 
 const getRecipes = async (req, res) => {
     try {
-        const query = req.query;
-        const recipe = await Recipe.find({ ...query });
-        res.send(recipe);
+        const query = req.query.q;
+        let recipes;
+
+        if (!query) { 
+            recipes = await Recipe.find();
+        } else {
+            // Search for recipes where name or description contains the query term
+            recipes = await Recipe.find({
+                $or: [
+                    { name: { $regex: query, $options: 'i' } }, // Case-insensitive search for name
+                    { description: { $regex: query, $options: 'i' } } // Case-insensitive search for description
+                ]
+            });
+        }
+
+        res.send(recipes);
     } catch (error) {
-        console.log('error getting recipe', error);
-        res.status(500).send('internal server error');
+        console.log('Error getting recipes', error);
+        res.status(500).send('Internal server error');
     }
 }
+
+
+
+
+
+
 
 const createRecipe = async (req, res) => {
     const body = req.body
