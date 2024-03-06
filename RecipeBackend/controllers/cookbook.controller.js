@@ -2,7 +2,7 @@ const { User} = require('../Models/user.model')
 const {Cookbook} = require('../Models/cookbook.model')
 
 const getCookBooks = async (req, res) => {
-    const cookBook = await Cookbook.find({});
+    const cookBook = await Cookbook.find({}).populate("recipes.recipeId");
     res.send(cookBook);
   };
 
