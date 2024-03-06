@@ -18,7 +18,6 @@ export default function CreateRecipe() {
     <option value="">kg</option>
       </select>
       <input type="text" placeholder='Amount' />
-      <br />
       <h2>Instructions:</h2>
       <input type="text" placeholder='Step number' />
       <input type="text" placeholder='Instruction' />
@@ -26,7 +25,6 @@ export default function CreateRecipe() {
       <h2>Categories:</h2>
       <input type="text" placeholder='Category' />
       <button>Add another category</button>
-      <br />
       <input type="text" placeholder='Cooking Time'/>
       <select name="" id="">
         <option value="">Hour</option>
