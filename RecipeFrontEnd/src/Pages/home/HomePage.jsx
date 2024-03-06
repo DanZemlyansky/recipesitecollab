@@ -3,6 +3,12 @@ import "./HomePage.css";
 import FadeInSection from "../../context/FadeInContext";
 
 function HomePage() {
+
+
+
+
+
+
   return (
     <div>
         <div className="homePageContainer">

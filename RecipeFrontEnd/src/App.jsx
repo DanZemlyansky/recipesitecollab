@@ -8,7 +8,7 @@ import SearchPage from './Pages/searchPage/SearchPage';
 import ProfilePage from './Pages/profilePage/ProfilePage';
 import HomePage from './Pages/home/HomePage';
 import Auth from "./Pages/auth/Auth"
-import "./App.css"  
+import "./App.css"
 
 
 function App() {
