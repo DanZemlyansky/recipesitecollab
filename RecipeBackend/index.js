@@ -1,10 +1,10 @@
 const { app } = require("./app");
-
+const {config} = require('./config')
 const mongoose = require('mongoose');
 
 
 
-mongoose.connect("mongodb://localhost:27017/RecipeApp")
+mongoose.connect(config.MONGO_URL)
     .then(() => {
         console.log("Connected to mongoDB");
     }).catch(error => {

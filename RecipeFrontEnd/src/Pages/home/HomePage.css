@@ -51,7 +51,6 @@
 }
 
 .buttonExplore {
-  /* padding-top: 1rem; */
   font-family: "ITC Benguiat Std", sans-serif;
   color: #1a1a1a;
   width: 10rem;
@@ -85,6 +84,7 @@
   justify-content: space-evenly;
   margin: 0 auto;
   max-width: 132rem;
+  margin-bottom: 4rem;
 }
 
 .recipeIdeasCardContainer {
