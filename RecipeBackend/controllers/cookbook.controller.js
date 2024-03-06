@@ -60,18 +60,14 @@ const getCookBookById = async (req, res) => {
   const addRecipe = async (req, res) => {
     const { cookBookId, recipeId } = req.body;
     try {
-
         const cookBook = await Cookbook.findById(cookBookId);
         if (!cookBook) {
             return res.status(404).send("Cookbook not found");
         }
-
         const newRecipe = {
             recipeId: recipeId
         };
-
         cookBook.recipes.push(newRecipe);
-
         await cookBook.save();
         res.status(200).send("Recipe added to cookbook successfully");
     } catch (err) {
