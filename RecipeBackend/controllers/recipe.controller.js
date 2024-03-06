@@ -12,7 +12,8 @@ const createRecipe = async (req, res) => {
     try {
         body.userId = req.user.id
         const newRecipe = new Recipe(body)
-        newRecipe.Id = newRecipe._id
+        newRecipe.id = newRecipe._id
+        
         await newRecipe.save()
         res.send(body)
     }
