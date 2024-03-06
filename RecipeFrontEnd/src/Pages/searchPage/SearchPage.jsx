@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { TextField, Button } from '@mui/material'
 import "./SearchPage.css"
 import axios from 'axios'
@@ -8,6 +9,7 @@ import Sdisplay from '../../Components/searchPage/searchDisplay'
 function SearchPage() {
   const [query, setQuery] = useState('')
   const [data, setData] = useState({});
+  const location = useLocation();
 
   const changeHandler = (e) => {
     console.log(e.target.value);
@@ -15,9 +17,8 @@ function SearchPage() {
   }
 
   const searchRecipes = async (e) => {
-    e.preventDefault();
 
-    await axios.get(`http://localhost:3000/api/v1/recipe/getRecipe?q=${query}`)
+    await axios.get(`http://localhost:3000/api/v1/recipe/getRecipes?q=${query}`)
       .then((response) => {
         console.log(response.data);
         setData(response.data);
@@ -26,6 +27,14 @@ function SearchPage() {
       });
   }
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const queryFromUrl = params.get('q');
+    if (queryFromUrl) {
+      setQuery(queryFromUrl);
+      searchRecipes(queryFromUrl);
+    }
+  }, [location.search]);
 
 
   return (

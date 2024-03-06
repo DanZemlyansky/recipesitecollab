@@ -10,8 +10,10 @@ import HomePage from "./Pages/home/HomePage";
 import Auth from "./Pages/auth/Auth";
 import "./App.css";
 import Footer from "./Components/footer/Footer";
+
 import CreateRecipe from "./Pages/createRecipe/CreateRecipe";
 import CookBook from "./Pages/cookBook/CookBook";
+
 
 
 
@@ -56,6 +58,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
+
       <div>
            <NavBar/>
       </div>
@@ -88,6 +91,7 @@ function App() {
       </div>
       <Footer />
    </BrowserRouter>
+
 
     </div>
   );
