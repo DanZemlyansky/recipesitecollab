@@ -61,7 +61,6 @@ const getCookBookById = async (req, res) => {
     const { cookBookId } = req.body;
     try {
     
-      const user = await User.findById(req.user.id);
 
         const cookBook = await Cookbook.findById(cookBookId);
         if (!cookBook) {
