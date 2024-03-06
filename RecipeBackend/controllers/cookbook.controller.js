@@ -63,7 +63,16 @@ const getCookBookById = async (req, res) => {
     
       const user = await User.findById(req.user.id);
 
-      const cookBook = await Cookbook.findById(cookBookId);
+        const cookBook = await Cookbook.findById(cookBookId);
+        if (!cookBook) {
+            return res.status(404).send("Cookbook not found");
+        }
+
+        const newRecipe = {
+            recipeId: recipeId
+        };
+
+        cookBook.recipes.push(newRecipe);
 
       await cookBook.save();
       res.status(200).send("Product added to shopping cart successfully");
