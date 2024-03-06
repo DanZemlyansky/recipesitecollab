@@ -16,22 +16,22 @@ function Footer() {
         <div className="footer-right">
           <div className="about-column">
             <h3>About Us</h3>
-            <p>Line 1 about the company</p>
-            <p>Line 2 about the company</p>
+            <p>Recipes</p>
+            <p>The Creators</p>
           </div>
           <div className="follow-us-column">
-            <h3>Follow Us</h3>
-            <p>Line 1 follow us on social media</p>
-            <p>Line 2 follow us on social media</p>
+            <h3>Legal</h3>
+            <p>Privacy Policy</p>
+            <p>Terms & Conditions</p>
           </div>
         </div>
       </div>
       <div className="footer-line"></div>
       <div className="footer-icons">
-        <i class="fa-brands fa-facebook footer-icon"></i>
-        <i class="fa-brands fa-instagram footer-icon"></i>
-        <i class="fa-brands fa-linkedin footer-icon"></i>
-        <i class="fa-brands fa-github footer-icon"></i>
+        <i className="fa-brands fa-facebook footer-icon"></i>
+        <i className="fa-brands fa-instagram footer-icon"></i>
+        <i className="fa-brands fa-linkedin footer-icon"></i>
+        <i className="fa-brands fa-github footer-icon"></i>
       </div>
     </footer>
   );

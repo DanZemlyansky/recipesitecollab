@@ -1,4 +1,5 @@
 import React from 'react';
+import "./RecipeCard.css"
 
 export default function RecipeCard({ recipe }) {
   console.log(recipe[0]);
@@ -6,7 +7,10 @@ export default function RecipeCard({ recipe }) {
     <div>
       {recipe.map((item) => (
         <div key={item._id}>
-          <h1>{item.name}</h1>
+          <div className="imageRecipeCardDiv">
+          <img className="imageRecipeCard" src={item.imgURL}  />
+          </div>
+          <h1 className='nameRecipeCard'>{item.name}</h1>
           <div>
             <div className='instructions'>
               <h2>Instructions</h2>

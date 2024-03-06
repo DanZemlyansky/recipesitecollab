@@ -10,7 +10,7 @@ import HomePage from "./Pages/home/HomePage";
 import Auth from "./Pages/auth/Auth";
 import "./App.css";
 import Footer from "./Components/footer/Footer";
-
+import CreateRecipe from "./Pages/createRecipe/CreateRecipe";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
