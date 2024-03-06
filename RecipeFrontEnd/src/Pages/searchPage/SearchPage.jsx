@@ -16,7 +16,7 @@ function SearchPage() {
   const searchRecipes = async (e) => {
     e.preventDefault();
 
-    await axios.get(`http://localhost:3000/api/v1/recipe/getRecipe?q={query}`)
+    await axios.get(`http://localhost:3000/api/v1/recipe/getRecipe?q=${query}`)
       .then((response) => {
         console.log(response.data);
         setData(response.data);
