@@ -1,22 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react'
-import NavBar from './Components/navBar/NavBar';
+import React, { useContext, useEffect, useState } from "react";
+import NavBar from "./Components/navBar/NavBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
-import Recipes from './Pages/recipes/Recipes';
-import Dashboard from './Pages/dashboard/Dashboard';
-import SearchPage from './Pages/searchPage/SearchPage';
-import ProfilePage from './Pages/profilePage/ProfilePage';
-import HomePage from './Pages/home/HomePage';
-import Auth from "./Pages/auth/Auth"
-import "./App.css"
-import Footer from './Components/footer/Footer';
-import CreateRecipe from './Pages/createRecipe/CreateRecipe';
+import Recipes from "./Pages/recipes/Recipes";
+import Dashboard from "./Pages/dashboard/Dashboard";
+import SearchPage from "./Pages/searchPage/SearchPage";
+import ProfilePage from "./Pages/profilePage/ProfilePage";
+import HomePage from "./Pages/home/HomePage";
+import Auth from "./Pages/auth/Auth";
+import "./App.css";
+import Footer from "./Components/footer/Footer";
 
 
 function App() {
   const { user, setUser } = useContext(UserContext);
-
-
 
   // const [isLoading, setIsLoading] = useState(true);
   // useEffect(() => {
@@ -87,8 +84,9 @@ function App() {
       </div>
       <Footer />
    </BrowserRouter>
+
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

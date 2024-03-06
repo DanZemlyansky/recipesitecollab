@@ -21,7 +21,8 @@
   justify-content: space-between;
 }
 
-.about-column, .follow-us-column {
+.about-column,
+.follow-us-column {
   width: 48%;
 }
 
@@ -39,4 +40,8 @@
   width: 40px;
   height: 40px;
   margin: 0 10px;
+}
+
+.company-logo {
+  width: 15rem;
 }

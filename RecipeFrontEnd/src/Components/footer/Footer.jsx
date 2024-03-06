@@ -1,17 +1,17 @@
 import React from 'react';
 import './Footer.css';
-import facebookLogo from './images/facebook-logo.png';
-import instagramLogo from './images/instagram-logo.png';
-import linkedinLogo from './images/linkedin-logo.png';
-import githubLogo from './images/github-logo.png';
-import companyLogo from './images/company-logo.png';
+// import facebookLogo from './images/facebook-logo.png';
+// import instagramLogo from './images/instagram-logo.png';
+// import linkedinLogo from './images/linkedin-logo.png';
+// import githubLogo from './images/github-logo.png';
+import logo from "../../assets/images/Recipes.png";
 
 function Footer() {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-left">
-          <img src={companyLogo} alt="Company Logo" className="company-logo" />
+          <img src={logo} alt="Company Logo" className="company-logo" />
         </div>
         <div className="footer-right">
           <div className="about-column">
@@ -28,10 +28,10 @@ function Footer() {
       </div>
       <div className="footer-line"></div>
       <div className="footer-icons">
-        <img src={facebookLogo} alt="Facebook Logo" className="footer-icon" />
-        <img src={instagramLogo} alt="Instagram Logo" className="footer-icon" />
-        <img src={linkedinLogo} alt="LinkedIn Logo" className="footer-icon" />
-        <img src={githubLogo} alt="GitHub Logo" className="footer-icon" />
+        <i class="fa-brands fa-facebook footer-icon"></i>
+        <i class="fa-brands fa-instagram footer-icon"></i>
+        <i class="fa-brands fa-linkedin footer-icon"></i>
+        <i class="fa-brands fa-github footer-icon"></i>
       </div>
     </footer>
   );
