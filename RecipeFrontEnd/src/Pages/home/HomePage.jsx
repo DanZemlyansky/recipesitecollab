@@ -5,6 +5,7 @@ import FadeInSection from "../../context/FadeInContext";
 import RecipesIdeasCard from "../../Components/recipesIdeasCard/RecipesIdeasCard";
 
 function HomePage() {
+
   const categories = ['Chicken', 'Indian food', 'Rice'];
 
   const [catCards, setCatCards] = useState([]);
