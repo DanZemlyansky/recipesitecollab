@@ -78,3 +78,16 @@
   display: flex;
   justify-content: center;
 }
+
+.recipesIdeasCardDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  max-width: 132rem;
+}
+
+.recipeIdeasCardContainer {
+  flex-basis: calc(19% - 4rem);
+  margin-bottom: 2rem;
+}
