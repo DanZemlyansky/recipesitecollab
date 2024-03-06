@@ -11,6 +11,9 @@ import Auth from "./Pages/auth/Auth";
 import "./App.css";
 import Footer from "./Components/footer/Footer";
 import CreateRecipe from "./Pages/createRecipe/CreateRecipe";
+import CookBook from "./Pages/cookBook/CookBook";
+
+
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -79,6 +82,7 @@ function App() {
             <Route path="/search" element={<SearchPage/>} />
             <Route path="/profile" element={<HomePage />} />
             <Route path="/createR" element={<CreateRecipe />} />
+            <Route path="/cookbook" element={<CookBook />} />
           </Routes>
         )}
       </div>

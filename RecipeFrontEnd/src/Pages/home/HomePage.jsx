@@ -12,23 +12,20 @@ function HomePage() {
   const [catCard, setCatCard] = useState({});
 
   const getCategories = async () => {
-    categories.map(async (category) => {
-      try {
-        await axios.get(`http://localhost/3000/api/v1/recipe/getCategory/${category}`)
-          .then((response) => {
-            console.log(response.data);
-            setCatCards(...prevCards, response.data)
-          }).catch((error) => {
-            console.log('error setting one or more cards', error);
-          });
-      } catch (error) {
-        console.log('Failed getting one or more categories', error);
-      }
-    })
+    try {
+      const responses = await Promise.all(categories.map(async (category) => {
+        const response = await axios.get(`http://localhost/3000/api/v1/recipe/getCategory/${category}`);
+        return response.data;
+      }));
+      setCatCards(responses);
+    } catch (error) {
+      console.error('Failed to fetch one or more categories:', error);
+    }
   };
 
-  useEffect(() => { getCategories() })
-
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   return (
     <div>
@@ -51,32 +48,25 @@ function HomePage() {
             <button className="buttonExplore">Explore</button>
           </div>
         </div>
-
       </div>
       <FadeInSection>
         <div className="homePageSecondPart">
-
           <div className="recipeTitleDiv">
             <h1 className="recipesIdeasTitle">Recipes Ideas</h1>
-          </div  >
+          </div>
           <div className="recipesIdeasCardDiv">
-          <RecipesIdeasCard name="Breakfast" src="src/assets/images/breakfast.png" />
-          <RecipesIdeasCard name="Fries" src="src/assets/images/frenchFries.png" />
-          <RecipesIdeasCard name="Pasta" src="src/assets/images/pasta.png" />
-          <RecipesIdeasCard name="Meat" src="src/assets/images/steak.png" />
-          <RecipesIdeasCard name="Chicken" src="src/assets/images/chicken.png" />
-          <RecipesIdeasCard name="Pizza" src="src/assets/images/pizza.png" />
-          <RecipesIdeasCard name="Dessert" src="src/assets/images/dessert.png" />
+            <RecipesIdeasCard name="Breakfast" src="src/assets/images/breakfast.png" />
+            <RecipesIdeasCard name="Fries" src="src/assets/images/frenchFries.png" />
+            <RecipesIdeasCard name="Pasta" src="src/assets/images/pasta.png" />
+            <RecipesIdeasCard name="Meat" src="src/assets/images/steak.png" />
+            <RecipesIdeasCard name="Chicken" src="src/assets/images/chicken.png" />
+            <RecipesIdeasCard name="Pizza" src="src/assets/images/pizza.png" />
+            <RecipesIdeasCard name="Dessert" src="src/assets/images/dessert.png" />
           </div>
         </div>
       </FadeInSection>
     </div>
   );
-
-
-
 }
 
 export default HomePage;
-
-
