@@ -1,20 +1,26 @@
 const { Recipe } = require('../Models/recipe.model');
 
-const getRecipeByCategory = async () => {
+const getRecipeByCategory = async (req, res) => {
     try {
         // get category from URL
         const category = req.params.category;
         const recipes = await Recipe.find({ category })
+        res.send(recipes);
     } catch (error) {
         console.log('error getting recipes by selected category', error);
         res.status(500).send('internal server error')
     }
 }
 
-const getRecipe = async (req, res) => {
-    const query = req.query;
-    const recipe = await Recipe.find({ ...query });
-    res.send(recipe);
+const getRecipes = async (req, res) => {
+    try {
+        const query = req.query;
+        const recipe = await Recipe.find({ ...query });
+        res.send(recipe);
+    } catch (error) {
+        console.log('error getting recipe', error);
+        res.status(500).send('internal server error');
+    }
 }
 
 const createRecipe = async (req, res) => {
@@ -44,4 +50,4 @@ const deleteRecipe = async (req, res) => {
 
 }
 
-module.exports = { getRecipe, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory }
+module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory }

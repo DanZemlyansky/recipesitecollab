@@ -10,6 +10,7 @@ function SearchPage() {
   const [data, setData] = useState({});
 
   const changeHandler = (e) => {
+    console.log(e.target.value);
     setQuery(e.target.value);
   }
 
