@@ -1,10 +1,20 @@
 const { Recipe } = require('../Models/recipe.model');
 
+const getRecipeByCategory = async () => {
+    try {
+        // get category from URL
+        const category = req.params.category;
+        const recipes = await Recipe.find({ category })
+    } catch (error) {
+        console.log('error getting recipes by selected category', error);
+        res.status(500).send('internal server error')
+    }
+}
+
 const getRecipe = async (req, res) => {
     const query = req.query;
     const recipe = await Recipe.find({ ...query });
     res.send(recipe);
-
 }
 
 const createRecipe = async (req, res) => {
@@ -13,7 +23,7 @@ const createRecipe = async (req, res) => {
         body.userId = req.user.id
         const newRecipe = new Recipe(body)
         newRecipe.id = newRecipe._id
-        
+
         await newRecipe.save()
         res.send(body)
     }
@@ -34,4 +44,4 @@ const deleteRecipe = async (req, res) => {
 
 }
 
-module.exports = {getRecipe, createRecipe, editRecipe, deleteRecipe }
+module.exports = { getRecipe, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory }
