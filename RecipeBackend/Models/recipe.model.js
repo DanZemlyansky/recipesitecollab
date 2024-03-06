@@ -5,6 +5,7 @@ const recipeSchema = new mongoose.Schema(
         userId: {type: mongoose.Types.ObjectId, ref: "Users" },
         name:{type:String},
         desc:{type:String},
+        
         ingridients:[{
             name: {type:String},
             measurement: {type:String},

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NavBar from './Components/navbar/NavBar';
+import NavBar from './Components/navBar/NavBar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import Recipes from './Pages/recipes/Recipes';
@@ -9,6 +9,7 @@ import ProfilePage from './Pages/profilePage/ProfilePage';
 import HomePage from './Pages/home/HomePage';
 import Auth from "./Pages/auth/Auth"
 import "./App.css"
+import CreateRecipe from './Pages/createRecipe/CreateRecipe';
 
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/search" element={<SearchPage/>} />
             <Route path="/profile" element={<HomePage />} />
+            <Route path="/createR" element={<CreateRecipe />} />
           </Routes>
         )}
       </div>
