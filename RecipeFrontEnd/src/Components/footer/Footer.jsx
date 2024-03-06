@@ -28,10 +28,10 @@ function Footer() {
       </div>
       <div className="footer-line"></div>
       <div className="footer-icons">
-        <i class="fa-brands fa-facebook footer-icon"></i>
-        <i class="fa-brands fa-instagram footer-icon"></i>
-        <i class="fa-brands fa-linkedin footer-icon"></i>
-        <i class="fa-brands fa-github footer-icon"></i>
+        <i className="fa-brands fa-facebook footer-icon"></i>
+        <i className="fa-brands fa-instagram footer-icon"></i>
+        <i className="fa-brands fa-linkedin footer-icon"></i>
+        <i className="fa-brands fa-github footer-icon"></i>
       </div>
     </footer>
   );
