@@ -11,7 +11,6 @@ function HomePage() {
 
   return (
     <div>
-      <FadeInSection>
         <div className="homePageContainer">
           <div className="blueShapeDiv">
             <img className="blueShape" src="src/assets/images/shapeBlue.png" />
@@ -35,7 +34,6 @@ function HomePage() {
             </div>
           </div>
         </div>
-      </FadeInSection> 
       <FadeInSection>
       <div className="homePageSecondPart">
        
