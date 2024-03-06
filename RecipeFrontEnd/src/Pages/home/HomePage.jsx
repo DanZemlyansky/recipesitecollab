@@ -1,10 +1,40 @@
-// HomePage.js
+
 import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./HomePage.css";
 import FadeInSection from "../../context/FadeInContext";
 import RecipesIdeasCard from "../../Components/recipesIdeasCard/RecipesIdeasCard";
 
 function HomePage() {
+
+
+
+
+  const categories = ['Chicken', 'Indian food', 'Rice'];
+
+  const [catCards, setCatCards] = useState([]);
+  const [catCard, setCatCard] = useState({});
+
+  const getCategories = async () => {
+    categories.map(async (category) => {
+      try {
+        await axios.get(`http://localhost/3000/api/v1/recipe/getCategory/${category}`)
+          .then((response) => {
+            console.log(response.data);
+            setCatCards(...prevCards, response.data)
+          }).catch((error) => {
+            console.log('error setting one or more cards', error);
+          });
+      } catch (error) {
+        console.log('Failed getting one or more categories', error);
+      }
+    })
+  };
+
+  useEffect(() => { getCategories() })
+
+
   return (
     <div>
       <div className="homePageContainer">
@@ -26,9 +56,11 @@ function HomePage() {
             <button className="buttonExplore">Explore</button>
           </div>
         </div>
+
       </div>
       <FadeInSection>
         <div className="homePageSecondPart">
+
           <div className="recipeTitleDiv">
             <h1 className="recipesIdeasTitle">Recipes Ideas</h1>
           </div  >
@@ -45,6 +77,11 @@ function HomePage() {
       </FadeInSection>
     </div>
   );
+
+
+
 }
 
 export default HomePage;
+
+

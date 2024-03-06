@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.post("/createRecipe", auth, recipes.createRecipe);
 
-router.get('/getRecipe', recipes.getRecipe)
+router.get('/getRecipes', recipes.getRecipes)
 
-router.get('/getRecipe/:category', recipes.getRecipeByCategory);
+router.get('/getCategory/:category', recipes.getRecipeByCategory);
 
 router.patch("/editRecipe/:id", recipes.editRecipe);
 
