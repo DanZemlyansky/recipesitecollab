@@ -20,7 +20,6 @@ const getRecipes = async (req, res) => {
         if (!query) { 
             recipes = await Recipe.find();
         } else {
-            // Search for recipes where name or description contains the query term
             recipes = await Recipe.find({
                 $or: [
                     { name: { $regex: query, $options: 'i' } }, // Case-insensitive search for name
