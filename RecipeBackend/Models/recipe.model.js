@@ -3,20 +3,20 @@ const mongoose = require('mongoose')
 const recipeSchema = new mongoose.Schema(
     {
         userId: {type: mongoose.Types.ObjectId, ref: "Users" },
-        name:{type:String},
-        desc:{type:String},
+        name:{type:String, required: true},
+        desc:{type:String, required: true},
         
         ingredients:[{
-            name: {type:String},
-            measurement: {type:String},
-            quantity: {type:Number, default: 1}
+            name: {type:String, required: true},
+            measurement: {type:String, required: true},
+            quantity: {type:Number, default: 1, required: true}
         }],
         instructions:[{
-            step:{type:Number},
-            instruction:{type:String}
+            step:{type:Number, required: true},
+            instruction:{type:String, required: true}
         }],
         category: [{ type: String, required: true }],
-        cookTime:{type:String},
+        cookTime:{type:String, required: true},
         imgURL:{type:String},
         
     }
