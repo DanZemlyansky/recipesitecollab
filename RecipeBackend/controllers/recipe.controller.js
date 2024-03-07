@@ -20,14 +20,14 @@ const getRecipes = async (req, res) => {
         let recipes;
 
         if (!query) {
-            recipes = await Recipe.find();
+            recipes = await Recipe.find().populate("userId");
         } else {
             recipes = await Recipe.find({
                 $or: [
-                    { name: { $regex: query, $options: 'i' } }, // case insensitive search for name
-                    { description: { $regex: query, $options: 'i' } } // case insensitive search for description
+                    { name: { $regex: query, $options: 'i' } },
+                    { description: { $regex: query, $options: 'i' } }
                 ]
-            });
+            }).populate("userId");
         }
 
         res.send(recipes);

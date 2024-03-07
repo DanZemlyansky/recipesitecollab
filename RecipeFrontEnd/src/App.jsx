@@ -84,7 +84,7 @@ function App() {
             {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/dashboard" element={<HomePage />} />
             <Route path="/recipes" element={<Recipes />} />
-            <Route path="/singleRecipe" element={<SingleRecipe />} />
+            <Route path="/recipes/:recipeId" element={<SingleRecipe />} />
             <Route path="/search" element={<SearchPage/>} />
             <Route path="/profile" element={<HomePage />} />
             <Route path="/createR" element={<CreateRecipe />} />
