@@ -10,7 +10,6 @@ router.get('/getRecipes', recipes.getRecipes)
 
 router.get('/getRecipe/:id', recipes.GetRecipeById)
 
-router.get('/getCategory/:category', recipes.getRecipeByCategory);
 
 
 

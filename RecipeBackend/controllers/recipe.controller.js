@@ -71,5 +71,5 @@ const deleteRecipe = async (req, res) => {
 }
 
 
-module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory, GetRecipeById }
+module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe,  GetRecipeById }
 
