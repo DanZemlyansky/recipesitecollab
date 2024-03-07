@@ -1,27 +1,47 @@
 const { Recipe } = require('../Models/recipe.model');
 
-const getRecipeByCategory = async (req, res) => {
+
+const GetRecipeById = async (req, res) => {
     try {
-        // get category from URL
-        const category = req.params.category;
-        const recipes = await Recipe.find({ category })
-        res.send(recipes);
+        const recipe = await Recipe.findById(req.params.id);
+        if (!recipe) {
+            return res.status(404).send("Recipe not found");
+        }
+        res.send(recipe);
     } catch (error) {
-        console.log('error getting recipes by selected category', error);
-        res.status(500).send('internal server error')
+        console.error(error);
+        res.status(500).send("Server Error");
     }
-}
+};
 
 const getRecipes = async (req, res) => {
     try {
-        const query = req.query;
-        const recipe = await Recipe.find({ ...query });
-        res.send(recipe);
+        const query = req.query.q;
+        let recipes;
+
+        if (!query) {
+            recipes = await Recipe.find();
+        } else {
+            recipes = await Recipe.find({
+                $or: [
+                    { name: { $regex: query, $options: 'i' } }, // case insensitive search for name
+                    { description: { $regex: query, $options: 'i' } } // case insensitive search for description
+                ]
+            });
+        }
+
+        res.send(recipes);
     } catch (error) {
-        console.log('error getting recipe', error);
-        res.status(500).send('internal server error');
+        console.log('Error getting recipes', error);
+        res.status(500).send('Internal server error');
     }
 }
+
+
+
+
+
+
 
 const createRecipe = async (req, res) => {
     const body = req.body
@@ -50,4 +70,6 @@ const deleteRecipe = async (req, res) => {
 
 }
 
-module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory }
+
+module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory, GetRecipeById }
+

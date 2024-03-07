@@ -2,9 +2,16 @@
 import React from 'react';
 import "./RecipesIdeasCard.css";
 
-function RecipesIdeasCard({ name, src }) {
+function RecipesIdeasCard({ name, src , onclick}) {
+
+  const handleClick = () => {
+    if (onclick) {
+      onclick(name);
+    }
+  };
+  
   return (
-    <div className='recipeIdeasCardContainer'>
+    <div className='recipeIdeasCardContainer'  onClick={handleClick}>
       <div className='imageContainer'>
         <img className='imageIdeas' src={src} alt="" />
         <h1 className='nameOfRecipeIdea'>{name}</h1>

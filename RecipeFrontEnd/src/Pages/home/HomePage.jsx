@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./HomePage.css";
@@ -6,26 +7,21 @@ import RecipesIdeasCard from "../../Components/recipesIdeasCard/RecipesIdeasCard
 
 function HomePage() {
 
-  const categories = ['Chicken', 'Indian food', 'Rice'];
 
-  const [catCards, setCatCards] = useState([]);
-  const [catCard, setCatCard] = useState({});
 
-  const getCategories = async () => {
-    try {
-      const responses = await Promise.all(categories.map(async (category) => {
-        const response = await axios.get(`http://localhost/3000/api/v1/recipe/getCategory/${category}`);
-        return response.data;
-      }));
-      setCatCards(responses);
-    } catch (error) {
-      console.error('Failed to fetch one or more categories:', error);
-    }
-  };
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+
+
+
+  const redirect = (name) => {
+    window.location.replace(`http://localhost:5173/search?q=${name}`)
+  }
+
+
+
+
+
+
 
   return (
     <div>
@@ -48,20 +44,21 @@ function HomePage() {
             <button className="buttonExplore">Explore</button>
           </div>
         </div>
+
       </div>
       <FadeInSection>
         <div className="homePageSecondPart">
+
           <div className="recipeTitleDiv">
             <h1 className="recipesIdeasTitle">Recipes Ideas</h1>
-          </div>
+          </div  >
           <div className="recipesIdeasCardDiv">
-            <RecipesIdeasCard name="Breakfast" src="src/assets/images/breakfast.png" />
-            <RecipesIdeasCard name="Fries" src="src/assets/images/frenchFries.png" />
-            <RecipesIdeasCard name="Pasta" src="src/assets/images/pasta.png" />
-            <RecipesIdeasCard name="Meat" src="src/assets/images/steak.png" />
-            <RecipesIdeasCard name="Chicken" src="src/assets/images/chicken.png" />
-            <RecipesIdeasCard name="Pizza" src="src/assets/images/pizza.png" />
-            <RecipesIdeasCard name="Dessert" src="src/assets/images/dessert.png" />
+            <RecipesIdeasCard onclick={() => redirect('Breakfast')} name="Breakfast" src="src/assets/images/breakfast.png" />   <RecipesIdeasCard name="Fries" src="src/assets/images/frenchFries.png" />
+            <RecipesIdeasCard onclick={() => redirect('Pasta')} name="Pasta" src="src/assets/images/pasta.png" />
+            <RecipesIdeasCard onclick={() => redirect('Meat')} name="Meat" src="src/assets/images/steak.png" />
+            <RecipesIdeasCard onclick={() => redirect('Chicken')} name="Chicken" src="src/assets/images/chicken.png" />
+            <RecipesIdeasCard onclick={() => redirect('Pizza')} name="Pizza" src="src/assets/images/pizza.png" />
+            <RecipesIdeasCard onclick={() => redirect('Dessert')} name="Dessert" src="src/assets/images/dessert.png" />
           </div>
         </div>
       </FadeInSection>
@@ -70,3 +67,5 @@ function HomePage() {
 }
 
 export default HomePage;
+
+
