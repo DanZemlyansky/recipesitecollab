@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { api } from "../../config/api";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 import "./CreateRecipe.css";
 
 export default function CreateRecipe() {
@@ -16,9 +20,13 @@ export default function CreateRecipe() {
   const [imgURL, setImgURL] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [focusedInput, setFocusedInput] = useState(null);
 
   const handleAddIngredient = () => {
-    setIngredients([...ingredients, { name: "", measurement: "", quantity: "" }]);
+    setIngredients([
+      ...ingredients,
+      { name: "", measurement: "", quantity: "" },
+    ]);
   };
 
   const handleRemoveIngredient = (index) => {
@@ -65,6 +73,14 @@ export default function CreateRecipe() {
     setCategories(newCategories);
   };
 
+  const handleInputFocus = (fieldName) => {
+    setFocusedInput(fieldName);
+  };
+
+  const handleInputBlur = () => {
+    setFocusedInput(null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -78,18 +94,22 @@ export default function CreateRecipe() {
         body: JSON.stringify({
           name: recipeName,
           desc: description,
-          ingredients: ingredients.filter(ingredient => ingredient.name !== ""),
-          instructions: instructions.filter(instruction => instruction.step !== ""),
-          category: categories.filter(category => category !== ""),
+          ingredients: ingredients.filter(
+            (ingredient) => ingredient.name !== ""
+          ),
+          instructions: instructions.filter(
+            (instruction) => instruction.step !== ""
+          ),
+          category: categories.filter((category) => category !== ""),
           cookTime: cookingTime,
           imgURL: imgURL,
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error("Failed to create recipe");
       }
-  
+
       setSuccessMessage("Recipe created successfully");
       setTimeout(() => {
         setSuccessMessage("");
@@ -110,17 +130,25 @@ export default function CreateRecipe() {
           <h2>Recipe Information</h2>
           <div className="spaceForInputs">
             <TextField
-              className="formControl"
+              className={`formControl ${
+                focusedInput === "recipeName" ? "input-focused" : ""
+              }`}
               type="text"
               placeholder="Recipe Name"
               value={recipeName}
+              onFocus={() => handleInputFocus("recipeName")}
+              onBlur={handleInputBlur}
               onChange={(e) => setRecipeName(e.target.value)}
             />
             <TextField
-              className="formControl descInput"
+              className={`formControl descInput ${
+                focusedInput === "description" ? "input-focused" : ""
+              }`}
               type="text"
               placeholder="Description"
               value={description}
+              onFocus={() => handleInputFocus("description")}
+              onBlur={handleInputBlur}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
@@ -131,14 +159,31 @@ export default function CreateRecipe() {
             <div key={index} className="formControl spaceForInputs">
               <TextField
                 type="text"
-                className="ingredientInput"
+                className={`ingredientInput ${
+                  focusedInput === `ingredientName${index}` ? "input-focused" : ""
+                }`}
                 placeholder="Ingredient Name"
                 value={ingredient.name}
-                onChange={(e) => handleIngredientChange(index, "name", e.target.value)}
+                onFocus={() => handleInputFocus(`ingredientName${index}`)}
+                onBlur={handleInputBlur}
+                onChange={(e) =>
+                  handleIngredientChange(index, "name", e.target.value)
+                }
               />
               <Select
                 value={ingredient.measurement}
-                onChange={(e) => handleIngredientChange(index, "measurement", e.target.value)}
+                className={`${
+                  focusedInput === `ingredientMeasurement${index}`
+                    ? "input-focused"
+                    : ""
+                }`}
+                onFocus={() =>
+                  handleInputFocus(`ingredientMeasurement${index}`)
+                }
+                onBlur={handleInputBlur}
+                onChange={(e) =>
+                  handleIngredientChange(index, "measurement", e.target.value)
+                }
                 displayEmpty
               >
                 <MenuItem value="" disabled>
@@ -153,23 +198,36 @@ export default function CreateRecipe() {
               </Select>
               <TextField
                 type="text"
-                className="quantityInput"
+                className={`quantityInput ${
+                  focusedInput === `ingredientQuantity${index}`
+                    ? "input-focused"
+                    : ""
+                }`}
                 placeholder="Quantity"
                 value={ingredient.quantity}
-                onChange={(e) => handleIngredientChange(index, "quantity", e.target.value)}
+                onFocus={() => handleInputFocus(`ingredientQuantity${index}`)}
+                onBlur={handleInputBlur}
+                onChange={(e) =>
+                  handleIngredientChange(index, "quantity", e.target.value)
+                }
               />
-              <Button
+              <IconButton
                 className="removeButton"
-                variant="contained"
+                aria-label="delete"
                 onClick={() => handleRemoveIngredient(index)}
               >
-                Remove
-              </Button>
+                <DeleteIcon />
+              </IconButton>
             </div>
           ))}
-          <Button className="addButton" variant="contained" onClick={handleAddIngredient}>
-            Add Ingredient
-          </Button>
+          <Fab
+            className="addButton"
+            color="primary"
+            aria-label="add"
+            onClick={handleAddIngredient}
+          >
+            <AddIcon />
+          </Fab>
         </div>
         <div className="formSection">
           <h2>Instructions:</h2>
@@ -177,30 +235,47 @@ export default function CreateRecipe() {
             <div key={index} className="formControl spaceForInputs">
               <TextField
                 type="text"
-                className="stepInput"
+                className={`stepInput ${
+                  focusedInput === `instructionStep${index}` ? "input-focused" : ""
+                }`}
                 placeholder="Step"
                 value={instruction.step}
-                onChange={(e) => handleInstructionChange(index, "step", e.target.value)}
+                onFocus={() => handleInputFocus(`instructionStep${index}`)}
+                onBlur={handleInputBlur}
+                onChange={(e) =>
+                  handleInstructionChange(index, "step", e.target.value)
+                }
               />
               <TextField
                 type="text"
+                className={`instructionInput ${
+                  focusedInput === `instructionText${index}` ? "input-focused" : ""
+                }`}
                 placeholder="Instruction"
-                className="instructionInput"
                 value={instruction.instruction}
-                onChange={(e) => handleInstructionChange(index, "instruction", e.target.value)}
+                onFocus={() => handleInputFocus(`instructionText${index}`)}
+                onBlur={handleInputBlur}
+                onChange={(e) =>
+                  handleInstructionChange(index, "instruction", e.target.value)
+                }
               />
-              <Button
+              <IconButton
                 className="removeButton"
-                variant="contained"
+                aria-label="delete"
                 onClick={() => handleRemoveInstruction(index)}
               >
-                Remove
-              </Button>
+                <DeleteIcon />
+              </IconButton>
             </div>
           ))}
-          <Button className="addButton" variant="contained" onClick={handleAddInstruction}>
-            Add Instruction
-          </Button>
+          <Fab
+            className="addButton"
+            color="primary"
+            aria-label="add"
+            onClick={handleAddInstruction}
+          >
+            <AddIcon />
+          </Fab>
         </div>
         <div className="formSection">
           <h2>Categories:</h2>
@@ -210,31 +285,44 @@ export default function CreateRecipe() {
                 type="text"
                 placeholder="Category"
                 value={category}
+                onFocus={() => handleInputFocus(`category${index}`)}
+                onBlur={handleInputBlur}
                 onChange={(e) => handleCategoryChange(index, e.target.value)}
               />
-              <Button
+              <IconButton
                 className="removeButton"
-                variant="contained"
+                aria-label="delete"
                 onClick={() => handleRemoveCategory(index)}
               >
-                Remove
-              </Button>
+                <DeleteIcon />
+              </IconButton>
             </div>
           ))}
-          <Button className="addButton" variant="contained" onClick={handleAddCategory}>
-            Add Category
-          </Button>
-             </div>
-          <div className="formSection spaceForInputs">
+          <Fab
+            className="addButton"
+            color="primary"
+            aria-label="add"
+            onClick={handleAddCategory}
+          >
+            <AddIcon />
+          </Fab>
+        </div>
+        <div className="formSection spaceForInputs">
           <TextField
-            className="formControl"
+            className={`formControl ${
+              focusedInput === "cookingTime" ? "input-focused" : ""
+            }`}
             type="text"
             placeholder="Cooking Time"
             value={cookingTime}
+            onFocus={() => handleInputFocus("cookingTime")}
+            onBlur={handleInputBlur}
             onChange={(e) => setCookingTime(e.target.value)}
           />
           <Select
-            className="formControl"
+            className={`formControl ${
+              focusedInput === "cookingTime" ? "input-focused" : ""
+            }`}
             value={cookingTime}
             onChange={(e) => setCookingTime(e.target.value)}
             displayEmpty
@@ -247,15 +335,20 @@ export default function CreateRecipe() {
             <MenuItem value="Day">Day</MenuItem>
           </Select>
           <TextField
-            className="formControl"
+            className={`formControl ${
+              focusedInput === "imgURL" ? "input-focused" : ""
+            }`}
             type="text"
-            placeholder="Image URL" 
+            placeholder="Image URL"
             value={imgURL}
+            onFocus={() => handleInputFocus("imgURL")}
+            onBlur={handleInputBlur}
             onChange={(e) => setImgURL(e.target.value)}
           />
-          </div>
-          <Button type="submit" variant="contained">Submit</Button>
-     
+        </div>
+        <Button type="submit" variant="contained">
+          Submit
+        </Button>
       </form>
     </div>
   );
