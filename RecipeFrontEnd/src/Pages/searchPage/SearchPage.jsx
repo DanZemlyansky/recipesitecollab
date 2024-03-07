@@ -10,17 +10,19 @@ function SearchPage() {
   const [query, setQuery] = useState('')
   const [data, setData] = useState({});
   const location = useLocation();
-
   const changeHandler = (e) => {
     console.log(e.target.value);
     setQuery(e.target.value);
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    searchRecipes()
+    searchRecipes(query)
   }
 
   const searchRecipes = async (query) => {
+
+
+
 
     await axios.get(`http://localhost:3000/api/v1/recipe/getRecipes?q=${query}`)
       .then((response) => {
@@ -56,7 +58,6 @@ function SearchPage() {
               <InputAdornment position='end'>
                 <Button
                   id="searchBtn"
-                  // onClick={searchRecipes}
                   sx={{ display: 'flex', justifyContent: 'end' }}
                 >
                   Search

@@ -1,0 +1,55 @@
+/* ingredientCard.css */
+
+/* Wrapper */
+#ingredientWrapper {
+    background-color: #FFF2E1;
+    height: 500px;
+    width: 20vw;
+    padding: 1%;
+}
+
+/* Title */
+#ingredientTitle {
+width: 100%;
+font-size: 2rem;
+}
+
+/* Servings and Measurement Container */
+#servingsMeasurmentContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#servingLabel{
+    width: 100%;
+}
+
+/* Servings */
+#servings {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+
+    /* Add your styles for the servings here */
+}
+
+/* Measurement Unit */
+#measurmentUnit {
+    /* Add your styles for the measurement unit here */
+}
+
+/* Name and Amount */
+#nameAndAmount {
+    /* Add your styles for the name and amount container here */
+}
+
+/* Name */
+.name {
+    /* Add your styles for the name here */
+}
+
+/* Amount */
+.amount {
+    /* Add your styles for the amount here */
+}
