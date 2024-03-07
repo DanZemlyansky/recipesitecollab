@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { TextField, Button , InputAdornment } from '@mui/material'
+import { TextField, Button, InputAdornment, IconButton, Box } from '@mui/material'
 import "./SearchPage.css"
 import axios from 'axios'
 
@@ -15,6 +15,7 @@ function SearchPage() {
     console.log(e.target.value);
     setQuery(e.target.value);
   }
+
 
   const searchRecipes = async (e) => {
 
@@ -38,16 +39,34 @@ function SearchPage() {
 
 
   return (
-    <section id='searchPageWrapper'>
+    <Box width={'100%'} id='searchPageWrapper'>
       <form id='searchField'>
-        <TextField fullWidth onChange={changeHandler} id="standard-basic" label="Standard" variant="standard" />
-        <Button id="searchBtn" sx={{ display: 'flex', justifyContent: 'end' }} onClick={searchRecipes}>Search</Button>
+        <TextField
+          fullWidth
+          onChange={changeHandler}
+          id="standard-basic"
+          label="Search for some recipes..."
+          variant="standard"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position='end'>
+                <Button
+                  id="searchBtn"
+                  onClick={searchRecipes}
+                  sx={{ display: 'flex', justifyContent: 'end' }}
+                >
+                  Search
+                </Button>
+              </InputAdornment>
+            )
+          }}
+        />
       </form>
 
+      {Object.keys(data).length === 0 ? null : <Sdisplay data={data} />}
 
-      <Sdisplay data={data}></Sdisplay>
-    </section >
-  )
+    </Box>
+  );
 }
 
 export default SearchPage
