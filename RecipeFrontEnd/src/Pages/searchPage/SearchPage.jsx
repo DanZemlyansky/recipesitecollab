@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { TextField, Button, InputAdornment, IconButton } from '@mui/material'
+import { TextField, Button, InputAdornment, IconButton, Box } from '@mui/material'
 import "./SearchPage.css"
 import axios from 'axios'
 
@@ -39,7 +39,7 @@ function SearchPage() {
 
 
   return (
-    <section id='searchPageWrapper'>
+    <Box width={'100%'} id='searchPageWrapper'>
       <form id='searchField'>
         <TextField
           fullWidth
@@ -65,7 +65,7 @@ function SearchPage() {
 
       {Object.keys(data).length === 0 ? null : <Sdisplay data={data} />}
 
-    </section>
+    </Box>
   );
 }
 

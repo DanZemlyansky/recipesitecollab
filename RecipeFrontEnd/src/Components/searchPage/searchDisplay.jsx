@@ -12,9 +12,9 @@ export default function Sdisplay(props) {
     return (
         <section id="searchResultsDisplayWrapper">
             {results.map((recipe, index) => (
-                <div key={index}>
-                    <Typography variant='h4'>{recipe.name}</Typography>
-                    <Typography variant='subtitle1'>{recipe.desc}</Typography>
+                <div className="resultContainer" key={index}>
+                    <Typography className="resultName" variant='h4'>{recipe.name}</Typography>
+                    <Typography className="resultDesc" variant='subtitle1'>{recipe.desc}</Typography>
 
                 </div>
             ))}
