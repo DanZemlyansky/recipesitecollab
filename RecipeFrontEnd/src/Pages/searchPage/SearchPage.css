@@ -1,0 +1,17 @@
+#searchPageWrapper{
+    display: flex;
+    justify-content: center;
+}
+
+#searchField {
+
+display: flex;
+flex-wrap: nowrap;
+justify-content: center;
+width: 80%;
+
+}
+
+#searchBtn{
+    margin-right: auto;
+}

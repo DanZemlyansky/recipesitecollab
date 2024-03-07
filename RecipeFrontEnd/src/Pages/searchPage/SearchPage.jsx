@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { TextField, Button } from '@mui/material'
+import { TextField, Button , InputAdornment } from '@mui/material'
 import "./SearchPage.css"
 import axios from 'axios'
 
@@ -39,14 +39,26 @@ function SearchPage() {
 
   return (
     <section id='searchPageWrapper'>
-      <form id='searchField'>
-        <TextField onChange={changeHandler} id="standard-basic" label="Standard" variant="standard" />
-        <Button onClick={searchRecipes}>Search</Button>
-      </form>
-
-
+    <form id='searchField'>
+      <TextField
+        fullWidth
+        onChange={changeHandler}
+        id="standard-basic"
+        label="Standard"
+        variant="standard"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <Button variant="contained" id="searchBtn" onClick={searchRecipes}>
+                Search
+              </Button>
+            </InputAdornment>
+          ),
+        }}
+      />
+    </form>
       <Sdisplay data={data}></Sdisplay>
-    </section >
+  </section>
   )
 }
 

@@ -1,16 +1,5 @@
 const { Recipe } = require('../Models/recipe.model');
 
-const getRecipeByCategory = async (req, res) => {
-    try {
-        // get category from URL
-        const category = req.params.category;
-        const recipes = await Recipe.find({ category })
-        res.send(recipes);
-    } catch (error) {
-        console.log('error getting recipes by selected category', error);
-        res.status(500).send('internal server error')
-    }
-}
 
 const GetRecipeById = async (req, res) => {
     try {
@@ -30,13 +19,13 @@ const getRecipes = async (req, res) => {
         const query = req.query.q;
         let recipes;
 
-        if (!query) { 
+        if (!query) {
             recipes = await Recipe.find();
         } else {
             recipes = await Recipe.find({
                 $or: [
-                    { name: { $regex: query, $options: 'i' } }, // Case-insensitive search for name
-                    { description: { $regex: query, $options: 'i' } } // Case-insensitive search for description
+                    { name: { $regex: query, $options: 'i' } }, // case insensitive search for name
+                    { description: { $regex: query, $options: 'i' } } // case insensitive search for description
                 ]
             });
         }
@@ -81,4 +70,6 @@ const deleteRecipe = async (req, res) => {
 
 }
 
+
 module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory, GetRecipeById }
+
