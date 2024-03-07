@@ -14,6 +14,20 @@ const GetRecipeById = async (req, res) => {
     }
 };
 
+const getRecipesByUserId = async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const recipes = await Recipe.find({ userId });
+        if (!recipes) {
+            return res.status(404).send("Recipes not found for this user");
+        }
+        res.send(recipes);
+    } catch (error) {
+        console.error("Error getting recipes by userId:", error);
+        res.status(500).send("Failed to get recipes by userId");
+    }
+}
+
 const getRecipes = async (req, res) => {
     try {
         const query = req.query.q;
@@ -66,5 +80,5 @@ const deleteRecipe = async (req, res) => {
 }
 
 
-module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe,  GetRecipeById }
+module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe,  GetRecipeById, getRecipesByUserId }
 
