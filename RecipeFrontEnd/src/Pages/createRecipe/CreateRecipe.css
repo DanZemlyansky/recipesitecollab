@@ -1,0 +1,30 @@
+/* styles.css */
+
+/* root */
+.root {
+  max-width: 600px;
+  margin: auto;
+  padding: 24px; /* equivalent to theme.spacing(3) */
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+/* formControl */
+.formControl {
+  margin-bottom: 16px; /* equivalent to theme.spacing(2) */
+}
+
+/* addButton */
+.addButton {
+  margin-right: 8px; /* equivalent to theme.spacing(1) */
+}
+
+/* removeButton */
+.removeButton {
+  margin-left: 8px; /* equivalent to theme.spacing(1) */
+}
+
+/* buttonGroup */
+.buttonGroup {
+  margin-top: 16px; /* equivalent to theme.spacing(2) */
+}

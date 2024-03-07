@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { api } from "../../config/api";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import "./CreateRecipe.css"
 
 export default function CreateRecipe() {
   const [recipeName, setRecipeName] = useState("");
   const [description, setDescription] = useState("");
-  const [ingredients, setIngredients] = useState([
-    { name: "", measurement: "", quantity: "" },
-  ]);
-  const [instructions, setInstructions] = useState([
-    { step: "", instruction: "" },
-  ]);
-  const [categories, setCategories] = useState([]);
+  const [ingredients, setIngredients] = useState([{ name: "", measurement: "", quantity: "" }]);
+  const [instructions, setInstructions] = useState([{ step: "", instruction: "" }]);
+  const [categories, setCategories] = useState([""]);
   const [cookingTime, setCookingTime] = useState("");
   const [imgURL, setImgURL] = useState(""); 
   const [successMessage, setSuccessMessage] = useState("");
@@ -80,9 +81,9 @@ export default function CreateRecipe() {
         body: JSON.stringify({
           name: recipeName,
           desc: description,
-          ingredients: ingredients.filter(ingredient => ingredient.name !== ""), // Filter out empty ingredients
-          instructions: instructions.filter(instruction => instruction.step !== ""), // Filter out empty instructions
-          category: categories.filter(category => category !== ""), // Filter out empty categories
+          ingredients: ingredients.filter(ingredient => ingredient.name !== ""),
+          instructions: instructions.filter(instruction => instruction.step !== ""),
+          category: categories.filter(category => category !== ""),
           cookTime: cookingTime,
           imgURL: imgURL,
         }),
@@ -103,18 +104,20 @@ export default function CreateRecipe() {
   };
 
   return (
-    <div>
+    <div className="root">
       <h1>Create Recipe</h1>
       {successMessage && <div>{successMessage}</div>}
       {errorMessage && <div>{errorMessage}</div>}
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
+          className="formControl"
           type="text"
           placeholder="Recipe Name"
           value={recipeName}
           onChange={(e) => setRecipeName(e.target.value)}
         />
-        <input
+        <TextField
+          className="formControl"
           type="text"
           placeholder="Description"
           value={description}
@@ -122,113 +125,110 @@ export default function CreateRecipe() {
         />
         <h2>Ingredients:</h2>
         {ingredients.map((ingredient, index) => (
-          <div key={index}>
-            <input
+          <div key={index} className="formControl">
+            <TextField
               type="text"
               placeholder="Ingredient Name"
               value={ingredient.name}
-              onChange={(e) =>
-                handleIngredientChange(index, "name", e.target.value)
-              }
+              onChange={(e) => handleIngredientChange(index, "name", e.target.value)}
             />
-            <select
+            <Select
               value={ingredient.measurement}
-              onChange={(e) =>
-                handleIngredientChange(index, "measurement", e.target.value)
-              }
+              onChange={(e) => handleIngredientChange(index, "measurement", e.target.value)}
             >
-              <option value="select measurement">unit</option>
-              <option value="ml">ml</option>
-              <option value="L">L</option>
-              <option value="Tbsp">Tbsp</option>
-              <option value="g">g</option>
-              <option value="Kg">Kg</option>
-            </select>
-
-            <input
+              <MenuItem value="box">box</MenuItem>
+              <MenuItem value="cup">cup</MenuItem>
+              <MenuItem value="ml">ml</MenuItem>
+              <MenuItem value="L">L</MenuItem>
+              <MenuItem value="Tbsp">Tbsp</MenuItem>
+              <MenuItem value="g">g</MenuItem>
+              <MenuItem value="Kg">Kg</MenuItem>
+            </Select>
+            <TextField
               type="text"
               placeholder="Quantity"
               value={ingredient.quantity}
-              onChange={(e) =>
-                handleIngredientChange(index, "quantity", e.target.value)
-              }
+              onChange={(e) => handleIngredientChange(index, "quantity", e.target.value)}
             />
             {index > 0 && (
-              <button onClick={() => handleRemoveIngredient(index)}>
+              <Button className="removeButton" variant="contained" onClick={() => handleRemoveIngredient(index)}>
                 Remove Ingredient
-              </button>
+              </Button>
             )}
           </div>
         ))}
-        <button type="button" onClick={handleAddIngredient}>
+        <Button className="addButton" variant="contained" onClick={handleAddIngredient}>
           Add Ingredient
-        </button>
+        </Button>
         <h2>Instructions:</h2>
         {instructions.map((instruction, index) => (
-          <div key={index}>
-            <input
+          <div key={index} className="formControl">
+            <TextField
               type="text"
               placeholder="Step"
               value={instruction.step}
-              onChange={(e) =>
-                handleInstructionChange(index, "step", e.target.value)
-              }
+              onChange={(e) => handleInstructionChange(index, "step", e.target.value)}
             />
-            <input
+            <TextField
               type="text"
               placeholder="Instruction"
               value={instruction.instruction}
-              onChange={(e) =>
-                handleInstructionChange(index, "instruction", e.target.value)
-              }
+              onChange={(e) => handleInstructionChange(index, "instruction", e.target.value)}
             />
             {index > 0 && (
-              <button onClick={() => handleRemoveInstruction(index)}>
+              <Button className="removeButton" variant="contained" onClick={() => handleRemoveInstruction(index)}>
                 Remove Instruction
-              </button>
+              </Button>
             )}
           </div>
         ))}
-        <button type="button" onClick={handleAddInstruction}>
+        <Button className="addButton" variant="contained" onClick={handleAddInstruction}>
           Add Instruction
-        </button>
+        </Button>
         <h2>Categories:</h2>
         {categories.map((category, index) => (
-          <div key={index}>
-            <input
+          <div key={index} className="formControl">
+            <TextField
               type="text"
               placeholder="Category"
               value={category}
               onChange={(e) => handleCategoryChange(index, e.target.value)}
             />
             {index > 0 && (
-              <button onClick={() => handleRemoveCategory(index)}>
+              <Button className="removeButton" variant="contained" onClick={() => handleRemoveCategory(index)}>
                 Remove Category
-              </button>
+              </Button>
             )}
           </div>
         ))}
-        <button type="button" onClick={handleAddCategory}>
+        <Button className="addButton" variant="contained" onClick={handleAddCategory}>
           Add Category
-        </button>
-        <input
+        </Button>
+        <TextField
+          className="formControl"
           type="text"
           placeholder="Cooking Time"
           value={cookingTime}
           onChange={(e) => setCookingTime(e.target.value)}
         />
-        <select name="" id="">
-          <option value="">Minutes</option>
-          <option value="">Hour</option>
-          <option value="">Day</option>
-        </select>
-        <input
+        <Select
+          className="formControl"
+          value={cookingTime}
+          onChange={(e) => setCookingTime(e.target.value)}
+        >
+          <MenuItem value="Choose Time">Choose Time</MenuItem>
+          <MenuItem value="Minutes">Minutes</MenuItem>
+          <MenuItem value="Hour">Hour</MenuItem>
+          <MenuItem value="Day">Day</MenuItem>
+        </Select>
+        <TextField
+          className="formControl"
           type="text"
           placeholder="Image URL" 
           value={imgURL}
           onChange={(e) => setImgURL(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <Button type="submit" variant="contained">Submit</Button>
       </form>
     </div>
   );
