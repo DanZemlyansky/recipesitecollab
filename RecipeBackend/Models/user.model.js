@@ -12,6 +12,8 @@ const userSchema = new mongoose.Schema(
             type: String,
             enum:["user","chef","admin"],
             default:"user"},
+            imageUrl: {type:String},
+        publicId:{type:String}
     }
 )
 

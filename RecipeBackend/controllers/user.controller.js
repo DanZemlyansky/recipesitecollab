@@ -52,4 +52,25 @@ const Login = async (req, res) =>{
     }
 }
 
-module.exports = {getUser, getUsers, Register, Login}
+const addImageUser = async(req,res)=>{
+    try{
+        const data= await uploadToCloudinary(req.file.path, "profile-images")
+
+    const savedImg = await Product.updateOne(
+        {_id: req.params.id},
+        {
+            $set: {
+                imageUrl: data.url,
+                publicId: data.public_id
+            },
+        }
+    );
+    res.status(200).send("image uploaded!")
+    }
+    catch{
+        res.status(400).send("Cannot upload image !")
+    }
+   
+}
+
+module.exports = {getUser, getUsers, Register, Login, addImageUser}

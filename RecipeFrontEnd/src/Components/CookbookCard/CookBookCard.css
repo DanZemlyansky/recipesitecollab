@@ -3,6 +3,12 @@
     justify-content: space-around;
 }
 
+.cookbookContainer a{
+    text-decoration: none;
+    color: black;
+}
+
+
 .cookbookcard img{
     width: 200px;
 }

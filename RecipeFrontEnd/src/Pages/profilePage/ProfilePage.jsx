@@ -3,7 +3,7 @@ import axios from 'axios';
 import { api } from '../../config/api';
 import './ProfilePage.css';
 import { UserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import ProfileRecipeCard from '../../Components/ProfileRecipe/ProfileRecipeCard';
 import ProfileCookBookCard from '../../Components/ProfileCookBook/ProfileCookBookCard';
 
@@ -11,7 +11,7 @@ function ProfilePage() {
   const { user } = useContext(UserContext);
   const [recipe, setRecipe] = useState([]);
   const [cookbook, setCookbook] = useState([])
-  const navigate = useNavigate(); // Access the navigate function
+  const navigate = useNavigate(); 
 
   const userId = user._id;
 
@@ -43,7 +43,7 @@ function ProfilePage() {
     fetchCookBook();
   }, []);
 
-  // Define handleNavigate function
+  
   const handleNavigate = (recipeId) => {
     navigate(`/recipes/${recipeId}`); // Use navigate function to redirect
   };
@@ -55,12 +55,6 @@ function ProfilePage() {
       <div>
         <ProfileRecipeCard handleNavigate={handleNavigate} recipe={recipe}/>
         <ProfileCookBookCard cookbook={cookbook}/>
-        {/* {recipe?.map((item) => (
-          <div key={item._id} onClick={() => handleNavigate(item._id)}>
-            <img src={item.imgURL} alt="" />
-            <h1>{item.name}</h1>
-          </div>
-        ))} */}
       </div>
     </div>
   );
