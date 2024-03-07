@@ -15,9 +15,12 @@ function SearchPage() {
     console.log(e.target.value);
     setQuery(e.target.value);
   }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    searchRecipes()
+  }
 
-
-  const searchRecipes = async (e) => {
+  const searchRecipes = async (query) => {
 
     await axios.get(`http://localhost:3000/api/v1/recipe/getRecipes?q=${query}`)
       .then((response) => {
@@ -32,6 +35,7 @@ function SearchPage() {
     const params = new URLSearchParams(location.search);
     const queryFromUrl = params.get('q');
     if (queryFromUrl) {
+      console.log(queryFromUrl);
       setQuery(queryFromUrl);
       searchRecipes(queryFromUrl);
     }
@@ -40,7 +44,7 @@ function SearchPage() {
 
   return (
     <Box width={'100%'} id='searchPageWrapper'>
-      <form id='searchField'>
+      <form id='searchField' onSubmit={handleSubmit}>
         <TextField
           fullWidth
           onChange={changeHandler}
@@ -52,7 +56,7 @@ function SearchPage() {
               <InputAdornment position='end'>
                 <Button
                   id="searchBtn"
-                  onClick={searchRecipes}
+                  // onClick={searchRecipes}
                   sx={{ display: 'flex', justifyContent: 'end' }}
                 >
                   Search
