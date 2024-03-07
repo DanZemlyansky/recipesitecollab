@@ -10,8 +10,8 @@
 
 /* Title */
 #ingredientTitle {
-width: 100%;
-font-size: 2rem;
+    width: 100%;
+    font-size: 2rem;
 }
 
 /* Servings and Measurement Container */
@@ -20,28 +20,45 @@ font-size: 2rem;
     justify-content: center;
 }
 
-#servingLabel{
+#servingLabel {
     width: 100%;
+    text-align: center;
 }
 
 /* Servings */
 #servings {
-    
+
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
 
     /* Add your styles for the servings here */
 }
 
 /* Measurement Unit */
 #measurmentUnit {
-    /* Add your styles for the measurement unit here */
+
+}
+
+#line {
+    background-color: rgba(0, 0, 0, 0.493);
+    width: 90%;
+    margin: 20px auto 0 auto;
+    height: 1px;
+}
+
+#metricButtons{
+    background-color: red;
+}
+
+.metricBtn {
+    background-color: red;
 }
 
 /* Name and Amount */
-#nameAndAmount {
-    /* Add your styles for the name and amount container here */
+.nameAndAmount {
+   display: flex;
+   justify-content: space-around;
 }
 
 /* Name */

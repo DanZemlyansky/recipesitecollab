@@ -1,5 +1,5 @@
 import './ingredientCard.css'
-import { ButtonGroup, Button } from '@mui/material';
+
 
 
 export default function IngredientsCard() {
@@ -17,15 +17,18 @@ export default function IngredientsCard() {
 
                 </div>
 
-                <div id='measumentUnit'>
-                    <ButtonGroup variant="contained" aria-label="Basic button group">
-                        <Button>Metric</Button>
-                        <Button>US</Button>
-                    </ButtonGroup></div>
+                <div id='measurmentUnit'>
+
+                    <div id='metricButtons'>
+                        <button className='metricBtn'>Metric</button>
+                        <button className='metricBtn'>US</button>
+                    </div>
+                </div>
             </div>
+            <div id='line'></div>
             <div className='nameAndAmount'>
-                <span className='name'></span>
-                <span className='amount'></span>
+                <span className='name'>Ingredient name</span>
+                <span className='amount'>90g</span>
 
             </div>
 
