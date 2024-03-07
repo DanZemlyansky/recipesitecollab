@@ -12,6 +12,19 @@ const getRecipeByCategory = async (req, res) => {
     }
 }
 
+const GetRecipeById = async (req, res) => {
+    try {
+        const recipe = await Recipe.findById(req.params.id);
+        if (!recipe) {
+            return res.status(404).send("Recipe not found");
+        }
+        res.send(recipe);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Server Error");
+    }
+};
+
 const getRecipes = async (req, res) => {
     try {
         const query = req.query.q;
@@ -68,4 +81,4 @@ const deleteRecipe = async (req, res) => {
 
 }
 
-module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory }
+module.exports = { getRecipes, createRecipe, editRecipe, deleteRecipe, getRecipeByCategory, GetRecipeById }
