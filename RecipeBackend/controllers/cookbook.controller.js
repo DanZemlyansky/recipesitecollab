@@ -15,6 +15,20 @@ const getCookBookById = async (req, res) => {
     }
   };
 
+  const getCookBooksByUserId = async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const cookbook = await Cookbook.find({ userId });
+        if (!cookbook) {
+            return res.status(404).send("cookbook not found for this user");
+        }
+        res.send(cookbook);
+    } catch (error) {
+        console.error("Error getting cookbook by userId:", error);
+        res.status(500).send("Failed to get cookbook by userId");
+    }
+}
+
   const updateCookBook = async (req, res) => {
     const { id } = req.params;
     const { body } = req;
@@ -77,4 +91,4 @@ const getCookBookById = async (req, res) => {
 };
 
 
-  module.exports = {getCookBooks, getCookBookById, createCookBook, updateCookBook, deleteCookBook, addRecipe }
+  module.exports = {getCookBooks, getCookBookById, createCookBook, updateCookBook, deleteCookBook, addRecipe, getCookBooksByUserId }

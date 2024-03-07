@@ -11,7 +11,6 @@ function SingleRecipe() {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("Recipe ID:", recipeId);
       try {
         const response = await axios.get(
           `${api}/recipe/getRecipe/${recipeId}`
