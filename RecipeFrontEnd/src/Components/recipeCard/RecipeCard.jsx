@@ -7,6 +7,7 @@ export default function RecipeCard({ recipe }) {
   return (
     <div>
       {recipe.map((item) => (
+        <div>
         <div key={item._id}>
           </div>
           <h1 className=''>{item.name}</h1>

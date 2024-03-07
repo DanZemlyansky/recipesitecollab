@@ -73,6 +73,8 @@ function App() {
             <Route path="/singleRecipe" element={<SingleRecipe />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/createR" element={<CreateRecipe />} />
+            <Route path="/cookbook" element={<CookBook />} />
             {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/" element={<HomePage />} />
           </Routes>
@@ -84,8 +86,6 @@ function App() {
             {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/dashboard" element={<HomePage />} />
             {/* <Route path="/recipes" element={<Recipes />} /> */}
-            <Route path="/singleRecipe" element={<SingleRecipe />} />
-            <Route path="/recipes" element={<Recipes />} />
             <Route path="/recipes/:recipeId" element={<SingleRecipe />} />
             <Route path="/search" element={<SearchPage/>} />
             <Route path="/profile" element={<HomePage />} />
