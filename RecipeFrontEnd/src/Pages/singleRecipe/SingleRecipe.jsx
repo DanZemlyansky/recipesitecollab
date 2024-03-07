@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import { api } from "../../config/api";
-import RecipeCard from "../../Components/recipeCard/RecipeCard";
 import "./SingleRecipe.css";
 import SingleRecipeCard from "../../Components/singleRecipeCard/SingleRecipeCard";
 
 function SingleRecipe() {
   const [recipe, setRecipe] = useState([]);
+  const { recipeId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("Recipe ID:", recipeId);
       try {
         const response = await axios.get(
-          `${api}/recipe/getRecipe/65e86877e848a38a3465f561`
+          `${api}/recipe/getRecipe/${recipeId}`
         );
-        console.log(response.data);
         setRecipe(response.data);
-        console.log(recipe);
       } catch (error) {
         console.error("Error fetching recipe:", error);
       }
     };
 
     fetchData();
-  }, []);
-  console.log(recipe);
+  }, [recipeId]);
 
   return (
     <div>
