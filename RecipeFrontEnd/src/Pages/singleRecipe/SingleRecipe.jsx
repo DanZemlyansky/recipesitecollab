@@ -3,6 +3,7 @@ import axios from "axios";
 import { api } from "../../config/api";
 import RecipeCard from "../../Components/recipeCard/RecipeCard";
 import "./SingleRecipe.css";
+import SingleRecipeCard from "../../Components/singleRecipeCard/SingleRecipeCard";
 
 function SingleRecipe() {
   const [recipe, setRecipe] = useState([]);
@@ -13,6 +14,7 @@ function SingleRecipe() {
         const response = await axios.get(
           `${api}/recipe/getRecipe/65e86877e848a38a3465f561`
         );
+        console.log(response.data);
         setRecipe(response.data);
       } catch (error) {
         console.error("Error fetching recipe:", error);
@@ -24,7 +26,7 @@ function SingleRecipe() {
 
   return (
     <div>
-      <RecipeCard recipe={recipe} />
+      <SingleRecipeCard recipe={recipe}/>
     </div>
   );
 }

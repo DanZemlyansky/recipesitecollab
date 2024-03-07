@@ -3,10 +3,8 @@ import axios from 'axios'
 import { api } from "../config/api";
 
 
-export const UserContext = createContext({
-  user: null,
-  setUser: () => {},
-});
+export const UserContext = createContext();
+
 
 const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
@@ -14,7 +12,7 @@ const UserProvider = ({ children }) => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`${api}/getUser/db`, {
+      const response = await axios.get(`${api}/user/getUser/db`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -53,6 +51,9 @@ const UserProvider = ({ children }) => {
     localStorage.removeItem('token')
   }
 
+  useEffect(()=>{
+    fetchUserData()
+  },[])
 
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
