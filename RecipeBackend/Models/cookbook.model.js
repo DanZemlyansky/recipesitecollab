@@ -7,7 +7,8 @@ const cookBookSchema = new mongoose.Schema(
      recipes:[{
         recipeId: { type: mongoose.Types.ObjectId, ref: "Recipes" },
      }],
-     price:{type:String}
+     price:{type:String},
+     imgURL:{type:String, default: "https://m.media-amazon.com/images/I/81RX2NcvAuL._AC_UF1000,1000_QL80_.jpg"}
 });
 
 const Cookbook = mongoose.model("Cookbooks", cookBookSchema);

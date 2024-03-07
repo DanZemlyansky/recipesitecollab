@@ -1,0 +1,17 @@
+.cookbookContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.cookbookcard img{
+    width: 200px;
+}
+
+.cookbookcard{
+display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(129, 129, 129);
+    width: 400px;
+}

@@ -15,6 +15,7 @@ import CreateRecipe from "./Pages/createRecipe/CreateRecipe";
 import CookBook from "./Pages/cookBook/CookBook";
 import SingleRecipe from "./Pages/singleRecipe/SingleRecipe";
 import Recipes from "./Pages/recipes/Recipes";
+import SingleCookBook from "./Pages/singleCookBook/SingleCookBook";
 
 
 
@@ -75,7 +76,8 @@ function App() {
             {/* <Route path="/recipes" element={<Recipes />} /> */}
             <Route path="/search" element={<SearchPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/cookbook" element={<CookBook />} />
+            <Route path="/cookbooks" element={<CookBook />} />
+            <Route path="/cookbooks/:cookBookId" element={<SingleCookBook />} />
             <Route path="/createR" element={<CreateRecipe />} />
             {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/" element={<HomePage />} />
@@ -87,12 +89,13 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/dashboard" element={<HomePage />} />
-            {/* <Route path="/recipes" element={<Recipes />} /> */}
+            <Route path="/recipes" element={<Recipes />} />
             <Route path="/recipes/:recipeId" element={<SingleRecipe />} />
+            <Route path="/cookbooks/:cookBookId" element={<SingleCookBook />} />
             <Route path="/search" element={<SearchPage/>} />
             <Route path="/profile" element={<HomePage />} />
             <Route path="/createR" element={<CreateRecipe />} />
-            <Route path="/cookbook" element={<CookBook />} />
+            <Route path="/cookbooks" element={<CookBook />} />
           </Routes>
         )}
       </div>
