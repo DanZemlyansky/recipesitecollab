@@ -9,7 +9,7 @@
 }
 
 .createTitle {
-  text-align: left;
+  text-align: center;
   font-family: "ITC Benguiat Std", sans-serif;
   font-size: 4rem;
   color: #b67352;
@@ -75,4 +75,20 @@
 }
 .quantityInput {
   width: 8rem;
+}
+
+h2 {
+  color: #ecb159;
+  font-family: "ITC Benguiat Std", sans-serif;
+}
+
+.css-1fo2sjy-MuiButtonBase-root-MuiFab-root {
+  background-color: #8cb9bd !important;
+}
+
+.input-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #b67352 !important;
+}
+.css-sghohy-MuiButtonBase-root-MuiButton-root{
+  background-color: #8cb9bd !important;
 }
