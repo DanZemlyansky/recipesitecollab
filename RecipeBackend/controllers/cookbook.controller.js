@@ -6,14 +6,25 @@ const getCookBooks = async (req, res) => {
     res.send(cookBook);
   };
 
-const getCookBookById = async (req, res) => {
+  const getCookBookById = async (req, res) => {
     try {
-      const cookBook = await Cookbook.findOne({userId: req.user.id}).populate("recipes.recipeId");
-      res.send(cookBook);
+        const { id } = req.params;
+        const cookBook = await Cookbook.findById(id).populate("recipes.recipeId");
+        if (!cookBook) {
+            return res.status(404).send("Cookbook not found");
+        }
+        res.send(cookBook);
     } catch (error) {
-      res.status(400).send("Error");
+        console.error(error);
+        res.status(500).send("Internal Server Error");
     }
-  };
+};
+
+module.exports = { getCookBookById };
+
+
+module.exports = { getCookBookById };
+
 
   const getCookBooksByUserId = async (req, res) => {
     const userId = req.params.userId;

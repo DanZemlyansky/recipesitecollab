@@ -14,6 +14,7 @@ export default function ProfileRecipeCard({recipe, handleNavigate}) {
             </div>
         )
       })}
+      
     </div>
   )
 }
