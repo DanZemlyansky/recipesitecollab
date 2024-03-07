@@ -2,7 +2,6 @@ import React from 'react'
 import './SingleRecipeCard.css'
 
 export default function SingleRecipeCard({recipe}) {
-  console.log(recipe);
   return (
     <div>
         <div className="imageRecipeCardDiv">
