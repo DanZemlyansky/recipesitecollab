@@ -61,6 +61,8 @@ const NavBar = () => {
               <Nav className="me-auto navbar-light">
                 <Nav.Link href="/recipes">Recipes</Nav.Link>
                 <Nav.Link href="/search">Search</Nav.Link>
+                <Nav.Link href="/createR">CreateRecipe</Nav.Link>
+                <Nav.Link href="/cookbook">Cookbook</Nav.Link>
                 {user.role === 'admin' && (
                   <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                 )}
@@ -101,7 +103,7 @@ const NavBar = () => {
                 {/* <Nav.Link href="/auth">Auth</Nav.Link> */}
                 <Nav.Link href="/recipes">Recipes</Nav.Link>
                 <Nav.Link href="/search">Search</Nav.Link>
-                <Nav.Link href="/createR">CreateRecipe</Nav.Link>
+                {/* <Nav.Link href="/createR">CreateRecipe</Nav.Link> */}
                 <Nav.Link href="/cookbook">Cookbook</Nav.Link>
               </Nav>
               <Nav className="ml-auto">

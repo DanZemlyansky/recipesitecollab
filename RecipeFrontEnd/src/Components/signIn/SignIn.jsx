@@ -11,9 +11,6 @@ const defaultTheme = createTheme();
 const SignIn = ({ toggleForm }) => {
   const { changeHandler, handleLogin } = useContext(UserContext);
   
-
-  
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>

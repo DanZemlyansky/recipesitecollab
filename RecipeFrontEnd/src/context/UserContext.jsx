@@ -55,6 +55,7 @@ const UserProvider = ({ children }) => {
     fetchUserData()
   },[])
 
+
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
   //   if (token) {
@@ -97,7 +98,8 @@ const UserProvider = ({ children }) => {
     changeHandler,
     handleRegister,
     handleLogin,
-    handleLogout
+    handleLogout,
+    fetchUserData
   };
 
   return (

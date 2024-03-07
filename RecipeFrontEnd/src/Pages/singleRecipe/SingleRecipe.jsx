@@ -16,6 +16,7 @@ function SingleRecipe() {
         );
         console.log(response.data);
         setRecipe(response.data);
+        console.log(recipe);
       } catch (error) {
         console.error("Error fetching recipe:", error);
       }
@@ -23,6 +24,7 @@ function SingleRecipe() {
 
     fetchData();
   }, []);
+  console.log(recipe);
 
   return (
     <div>
