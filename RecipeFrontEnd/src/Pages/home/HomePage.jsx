@@ -10,7 +10,6 @@ function HomePage() {
 
 
 
-  const categories = ['Breakfast', 'Fries', 'Pasta', 'Meat', 'Chicken', 'Pizza', 'Dessert'];
 
 
 
@@ -54,7 +53,7 @@ function HomePage() {
             <h1 className="recipesIdeasTitle">Recipes Ideas</h1>
           </div  >
           <div className="recipesIdeasCardDiv">
-            <RecipesIdeasCard onclick={() => redirect('Breakfast')} name="Breakfast" src="src/assets/images/breakfast.png" />          <RecipesIdeasCard name="Fries" src="src/assets/images/frenchFries.png" />
+            <RecipesIdeasCard onclick={() => redirect('Breakfast')} name="Breakfast" src="src/assets/images/breakfast.png" />   <RecipesIdeasCard name="Fries" src="src/assets/images/frenchFries.png" />
             <RecipesIdeasCard onclick={() => redirect('Pasta')} name="Pasta" src="src/assets/images/pasta.png" />
             <RecipesIdeasCard onclick={() => redirect('Meat')} name="Meat" src="src/assets/images/steak.png" />
             <RecipesIdeasCard onclick={() => redirect('Chicken')} name="Chicken" src="src/assets/images/chicken.png" />
