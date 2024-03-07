@@ -12,6 +12,7 @@ import "./App.css";
 import Footer from "./Components/footer/Footer";
 import CreateRecipe from "./Pages/createRecipe/CreateRecipe";
 import CookBook from "./Pages/cookBook/CookBook";
+import SingleRecipe from "./Pages/singleRecipe/SingleRecipe";
 
 
 
@@ -66,6 +67,7 @@ function App() {
             <Route path="/auth" element={<HomePage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route path="/singleRecipe" element={<SingleRecipe />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             {/* <Route path="*" element={<NotFound />} /> */}
@@ -79,6 +81,7 @@ function App() {
             {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/dashboard" element={<HomePage />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route path="/singleRecipe" element={<SingleRecipe />} />
             <Route path="/search" element={<SearchPage/>} />
             <Route path="/profile" element={<HomePage />} />
             <Route path="/createR" element={<CreateRecipe />} />
