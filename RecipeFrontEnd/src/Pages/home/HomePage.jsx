@@ -7,21 +7,9 @@ import RecipesIdeasCard from "../../Components/recipesIdeasCard/RecipesIdeasCard
 
 function HomePage() {
 
-
-
-
-
-
-
   const redirect = (name) => {
     window.location.replace(`http://localhost:5173/search?q=${name}`)
   }
-
-
-
-
-
-
 
   return (
     <div>
