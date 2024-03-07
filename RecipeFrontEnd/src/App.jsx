@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import NavBar from "./Components/navBar/NavBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
-import Recipes from "./Pages/recipes/Recipes";
+// import Recipes from "./Pages/recipes/Recipes";
 import Dashboard from "./Pages/dashboard/Dashboard";
 import SearchPage from "./Pages/searchPage/SearchPage";
 import ProfilePage from "./Pages/profilePage/ProfilePage";
@@ -69,7 +69,7 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/auth" element={<HomePage />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/recipes" element={<Recipes />} />
+            {/* <Route path="/recipes" element={<Recipes />} /> */}
             <Route path="/singleRecipe" element={<SingleRecipe />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/profile" element={<ProfilePage />} />
@@ -83,7 +83,7 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/dashboard" element={<HomePage />} />
-            <Route path="/recipes" element={<Recipes />} />
+            {/* <Route path="/recipes" element={<Recipes />} /> */}
             <Route path="/singleRecipe" element={<SingleRecipe />} />
             <Route path="/search" element={<SearchPage/>} />
             <Route path="/profile" element={<HomePage />} />

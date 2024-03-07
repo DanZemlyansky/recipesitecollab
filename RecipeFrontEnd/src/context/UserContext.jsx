@@ -53,6 +53,10 @@ const UserProvider = ({ children }) => {
     localStorage.removeItem('token')
   }
 
+  useEffect(() => {
+    fetchUserData();
+  }, [])
+
 
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
@@ -96,7 +100,8 @@ const UserProvider = ({ children }) => {
     changeHandler,
     handleRegister,
     handleLogin,
-    handleLogout
+    handleLogout,
+    fetchUserData
   };
 
   return (
