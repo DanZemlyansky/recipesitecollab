@@ -39,26 +39,14 @@ function SearchPage() {
 
   return (
     <section id='searchPageWrapper'>
-    <form id='searchField'>
-      <TextField
-        fullWidth
-        onChange={changeHandler}
-        id="standard-basic"
-        label="Standard"
-        variant="standard"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <Button variant="contained" id="searchBtn" onClick={searchRecipes}>
-                Search
-              </Button>
-            </InputAdornment>
-          ),
-        }}
-      />
-    </form>
+      <form id='searchField'>
+        <TextField fullWidth onChange={changeHandler} id="standard-basic" label="Standard" variant="standard" />
+        <Button id="searchBtn" sx={{ display: 'flex', justifyContent: 'end' }} onClick={searchRecipes}>Search</Button>
+      </form>
+
+
       <Sdisplay data={data}></Sdisplay>
-  </section>
+    </section >
   )
 }
 
