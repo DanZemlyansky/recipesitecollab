@@ -20,14 +20,14 @@ const getRecipes = async (req, res) => {
         let recipes;
 
         if (!query) {
-            recipes = await Recipe.find();
+            recipes = await Recipe.find().populate("userId");
         } else {
             recipes = await Recipe.find({
                 $or: [
-                    { name: { $regex: query, $options: 'i' } }, // case insensitive search for name
-                    { description: { $regex: query, $options: 'i' } } // case insensitive search for description
+                    { name: { $regex: query, $options: 'i' } },
+                    { description: { $regex: query, $options: 'i' } }
                 ]
-            });
+            }).populate("userId");
         }
 
         res.send(recipes);
@@ -38,22 +38,17 @@ const getRecipes = async (req, res) => {
 }
 
 
-
-
-
-
-
 const createRecipe = async (req, res) => {
-    const body = req.body
+    const body = req.body;
     try {
-        body.userId = req.user.id
-        const newRecipe = new Recipe(body)
-        newRecipe.id = newRecipe._id
-
-        await newRecipe.save()
-        res.send(body)
+        body.userId = req.user.id;
+        const newRecipe = new Recipe(body);
+        await newRecipe.save();
+        res.status(201).send(newRecipe);
+    } catch (error) {
+        console.error("Error creating recipe:", error);
+        res.status(500).send("Failed to create recipe");
     }
-    catch { res.status(400).send("Cant create Recipe") }
 }
 
 const editRecipe = async (req, res) => {
