@@ -10,6 +10,8 @@ router.get('/getCookbook/:id', cookbook.getCookBooks);
 router.patch('/updateCookbook', cookbook.updateCookBook)
 router.post('/createCookBook',auth, cookbook.createCookBook);
 router.delete('/deleteCookbook/:id', cookbook.deleteCookBook)
+router.get('/getCookBookByUser/:userId', cookbook.getCookBooksByUserId);
+
 
 
 module.exports = router
