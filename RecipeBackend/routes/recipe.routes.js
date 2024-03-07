@@ -8,10 +8,9 @@ router.post("/createRecipe", auth, recipes.createRecipe);
 
 router.get('/getRecipes', recipes.getRecipes)
 
-router.patch("/editRecipe/:id", recipes.editRecipe);
+router.get('/getRecipe/:id', recipes.GetRecipeById)
 
-router.delete("/deleteRecipe/:id", recipes.deleteRecipe);
-
+router.get('/getCategory/:category', recipes.getRecipeByCategory);
 
 
 

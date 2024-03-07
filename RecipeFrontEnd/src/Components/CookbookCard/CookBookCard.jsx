@@ -2,7 +2,6 @@ import React from 'react'
 import './CookBookCard.css'
 
 export default function CookBookCard({ cookbook }) {
-  console.log(cookbook[0]);
   return (
     <div>
       {cookbook.map((item) => (
