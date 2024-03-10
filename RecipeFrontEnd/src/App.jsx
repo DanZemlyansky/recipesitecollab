@@ -16,6 +16,7 @@ import CookBook from "./Pages/cookBook/CookBook";
 import SingleRecipe from "./Pages/singleRecipe/SingleRecipe";
 import Recipes from "./Pages/recipes/Recipes";
 import SingleCookBook from "./Pages/singleCookBook/SingleCookBook";
+import CreateCB from "./Pages/createCookBook/CreateCB";
 
 
 
@@ -79,6 +80,7 @@ function App() {
             <Route path="/cookbooks" element={<CookBook />} />
             <Route path="/cookbooks/:cookBookId" element={<SingleCookBook />} />
             <Route path="/createR" element={<CreateRecipe />} />
+            <Route path="/createCB" element={<CreateCB/>} />
             {/* <Route path="*" element={<NotFound />} /> */}
             <Route path="/" element={<HomePage />} />
           </Routes>
@@ -96,6 +98,8 @@ function App() {
             <Route path="/profile" element={<HomePage />} />
             <Route path="/createR" element={<CreateRecipe />} />
             <Route path="/cookbooks" element={<CookBook />} />
+            <Route path="/createCB" element={<CreateCB/>} />
+
           </Routes>
         )}
       </div>
