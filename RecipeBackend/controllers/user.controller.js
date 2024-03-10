@@ -1,6 +1,7 @@
 const { User } = require('../Models/user.model')
 const bcrypt = require('bcrypt');
-const { generateToken , verifyToken} = require('../utils/jwt')
+const { generateToken , verifyToken} = require('../utils/jwt');
+const { uploadToCloudinary } = require('../cloudinary/media.cloudinary');
 
 const getUsers = async(req,res)=>{
     const query =  req.query
@@ -55,13 +56,12 @@ const Login = async (req, res) =>{
 const addImageUser = async(req,res)=>{
     try{
         const data= await uploadToCloudinary(req.file.path, "profile-images")
-
-    const savedImg = await Product.updateOne(
-        {_id: req.params.id},
+        console.log(data);
+    const savedImg = await User.findByIdAndUpdate(
+        req.user.id,
         {
             $set: {
                 imageUrl: data.url,
-                publicId: data.public_id
             },
         }
     );
