@@ -91,3 +91,14 @@
   flex-basis: calc(19% - 4rem);
   margin-bottom: 2rem;
 }
+
+.imageForAbout {
+  margin-top: 4rem;
+  height: 26.38rem;
+  margin-bottom: 2rem;
+}
+
+.secondImageForAbout {
+  height: 36.9rem;
+  margin-bottom: 4rem;
+}

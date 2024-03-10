@@ -48,6 +48,12 @@ function HomePage() {
             <RecipesIdeasCard onclick={() => redirect('Pizza')} name="Pizza" src="src/assets/images/pizza.png" />
             <RecipesIdeasCard onclick={() => redirect('Dessert')} name="Dessert" src="src/assets/images/dessert.png" />
           </div>
+          <FadeInSection>
+          <div >
+            <img className="imageForAbout" src="src\assets\images\about.png" alt="" />
+            <img className="secondImageForAbout" src="src\assets\images\About us.png" alt="" />
+          </div>
+          </FadeInSection>
         </div>
       </FadeInSection>
     </div>
