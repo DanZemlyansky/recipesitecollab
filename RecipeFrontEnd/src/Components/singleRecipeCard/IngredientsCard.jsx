@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ingredientCard.css';
 
-export default function IngredientsCard() {
+export default function IngredientsCard({ recipe }) {
     let [servings, setServings] = useState(1);
     const [isMetric, setIsMetric] = useState(true);
 
@@ -52,9 +52,18 @@ export default function IngredientsCard() {
                 </div>
             </div>
             <div id="line"></div>
-            <div className="nameAndAmount">
-                <span className="name">Ingredient name</span>
-                <span className="amount">90g</span>
+            <div id='ingredientsContainer'>
+
+                {recipe.ingridients?.map((ingredient) => (
+                    <div key={ingredient._id} className="nameAndAmount">
+                        <span className="name">{ingredient.name}</span>
+                        <div className="quantity">
+                            <span className="amount">{ingredient.quantity}</span>
+                            <span className='ingredientMeasurment'>{ingredient.measurement}</span>
+                        </div>
+                    </div>
+                ))}
+
             </div>
         </div>
     );

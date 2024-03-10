@@ -18,21 +18,12 @@ export default function SingleRecipeCard({ recipe }) {
             </p>
           ))}
         </div>
-        <div className='ingredients'>
-          <h2>Ingredients</h2>
-          <ul>
-            {recipe.ingridients?.map((ingredient) => (
-              <li key={ingredient._id}>
-                {ingredient.quantity} {ingredient.measurement} {ingredient.name}
-              </li>
-            ))}
-          </ul>
-        </div>
+
       </div>
 
 
 
-      <IngredientsCard></IngredientsCard>
+      <IngredientsCard recipe={recipe}></IngredientsCard>
     </div>
   )
 }

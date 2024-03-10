@@ -85,15 +85,20 @@
 }
 
 .activeMetric {
-    background-color: #DC9831; /* Desired background color */
+    background-color: #DC9831;
+    /* Desired background color */
 }
 
 
+#ingredientsContainer {
+    padding: 1rem;
+
+}
 
 /* Name and Amount */
 .nameAndAmount {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 0.75rem;
 }
 
