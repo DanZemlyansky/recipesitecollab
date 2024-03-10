@@ -4,24 +4,60 @@ import { api } from '../../config/api';
 import './ProfilePage.css';
 import { UserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import ProfileRecipeCard from '../../Components/ProfileRecipe/ProfileRecipeCard';
+import ProfileCookBookCard from '../../Components/ProfileCookBook/ProfileCookBookCard';
 
 function ProfilePage() {
   const { user } = useContext(UserContext);
+  const [recipe, setRecipe] = useState([]);
+  const [cookbook, setCookbook] = useState([])
   const [ImgData, setImgData] = useState({});
   const navigate = useNavigate();
 
   const userId = user._id;
 
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      try {
+        const response = await axios.get(`${api}/recipe/getRecipesByUser/${userId}`);
+        console.log(response.data);
+        setRecipe(response.data);
+      } catch (error) {
+        console.error('Error fetching recipe:', error);
+      }
+    };
+
+    fetchRecipe();
+  }, []);
+
+  useEffect(() => {
+    const fetchCookBook = async () => {
+      try {
+        const response = await axios.get(`${api}/cookbook/getCookBookByUser/${userId}`);
+        console.log(response.data);
+        setCookbook(response.data);
+      } catch (error) {
+        console.error('Error fetching recipe:', error);
+      }
+    };
+
+    fetchCookBook();
+  }, []);
+
+  // Define handleNavigate function
+  const handleNavigate = (recipeId) => {
+    navigate(`/recipes/${recipeId}`); // Use navigate function to redirect
+  };
+
   const changeImgInfoHandler = (e) => {
     setImgData(e.target.files[0]);
   };
-  console.log(ImgData);
 
   const handleFile = () => {
     const formData = new FormData();
     formData.append("profileIMG", ImgData);
     axios
-      .post(`http://localhost:3000/api/v1/user/image/`, formData, {
+      .post(`${api}/user/image/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -50,6 +86,10 @@ function ProfilePage() {
               />
         <button>Upload Image</button>
         </form>
+        <div>
+        <ProfileRecipeCard handleNavigate={handleNavigate} recipe={recipe}/>
+        <ProfileCookBookCard cookbook={cookbook}/>
+        </div>
       </div>
     </div>
   );
