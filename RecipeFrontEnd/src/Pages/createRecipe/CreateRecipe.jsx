@@ -17,6 +17,7 @@ export default function CreateRecipe() {
   const [instructions, setInstructions] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cookingTime, setCookingTime] = useState("");
+  const [cookingTimeUnit, setCookingTimeUnit] = useState("");
   const [imgURL, setImgURL] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -122,237 +123,247 @@ export default function CreateRecipe() {
 
   return (
     <div className="containerDivCreate">
-      <img className="imgimg" src="src/assets/images/shapapa.png" alt=""  />
-    <div className="rootOfCreateRecipe" >
-      <h1 className="createTitle">Create Recipe</h1>
-      {successMessage && <div>{successMessage}</div>}
-      {errorMessage && <div>{errorMessage}</div>}
-      <form className="formForCreateRecipe" onSubmit={handleSubmit}>
-        <div className="formSection">
-          <h2>Recipe Information</h2>
-          <div className="spaceForInputs">
+      <img className="imgimg" src="src/assets/images/shapapa.png" alt="" />
+      <div className="rootOfCreateRecipe">
+        <h1 className="createTitle">Create Recipe</h1>
+        {successMessage && <div>{successMessage}</div>}
+        {errorMessage && <div>{errorMessage}</div>}
+        <form className="formForCreateRecipe" onSubmit={handleSubmit}>
+          <div className="formSection">
+            <h2>Recipe Information</h2>
+            <div className="spaceForInputs">
+              <TextField
+                className={`formControl ${
+                  focusedInput === "recipeName" ? "input-focused" : ""
+                }`}
+                type="text"
+                placeholder="Recipe Name"
+                value={recipeName}
+                onFocus={() => handleInputFocus("recipeName")}
+                onBlur={handleInputBlur}
+                onChange={(e) => setRecipeName(e.target.value)}
+              />
+              <TextField
+                className={`formControl descInput ${
+                  focusedInput === "description" ? "input-focused" : ""
+                }`}
+                type="text"
+                placeholder="Description"
+                value={description}
+                onFocus={() => handleInputFocus("description")}
+                onBlur={handleInputBlur}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="formSection">
+            <h2>Ingredients:</h2>
+            {ingredients.map((ingredient, index) => (
+              <div key={index} className="formControl spaceForInputs">
+                <TextField
+                  type="text"
+                  className={`ingredientInput ${
+                    focusedInput === `ingredientName${index}`
+                      ? "input-focused"
+                      : ""
+                  }`}
+                  placeholder="Ingredient Name"
+                  value={ingredient.name}
+                  onFocus={() => handleInputFocus(`ingredientName${index}`)}
+                  onBlur={handleInputBlur}
+                  onChange={(e) =>
+                    handleIngredientChange(index, "name", e.target.value)
+                  }
+                />
+                <Select
+                  value={ingredient.measurement}
+                  className={`${
+                    focusedInput === `ingredientMeasurement${index}`
+                      ? "input-focused"
+                      : ""
+                  }`}
+                  onFocus={() =>
+                    handleInputFocus(`ingredientMeasurement${index}`)
+                  }
+                  onBlur={handleInputBlur}
+                  onChange={(e) =>
+                    handleIngredientChange(index, "measurement", e.target.value)
+                  }
+                  displayEmpty
+                >
+                  <MenuItem value="" disabled>
+                    Unit
+                  </MenuItem>
+                  <MenuItem value="cup">cup</MenuItem>
+                  <MenuItem value="ml">ml</MenuItem>
+                  <MenuItem value="L">L</MenuItem>
+                  <MenuItem value="Tbsp">Tbsp</MenuItem>
+                  <MenuItem value="g">g</MenuItem>
+                  <MenuItem value="Kg">Kg</MenuItem>
+                </Select>
+                <TextField
+                  type="text"
+                  className={`quantityInput ${
+                    focusedInput === `ingredientQuantity${index}`
+                      ? "input-focused"
+                      : ""
+                  }`}
+                  placeholder="Quantity"
+                  value={ingredient.quantity}
+                  onFocus={() => handleInputFocus(`ingredientQuantity${index}`)}
+                  onBlur={handleInputBlur}
+                  onChange={(e) =>
+                    handleIngredientChange(index, "quantity", e.target.value)
+                  }
+                />
+                <IconButton
+                  className="removeButton"
+                  aria-label="delete"
+                  onClick={() => handleRemoveIngredient(index)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            ))}
+            <Fab
+              className="addButton"
+              color="primary"
+              aria-label="add"
+              onClick={handleAddIngredient}
+            >
+              <AddIcon />
+            </Fab>
+          </div>
+          <div className="formSection">
+            <h2>Instructions:</h2>
+            {instructions.map((instruction, index) => (
+              <div key={index} className="formControl spaceForInputs">
+                <TextField
+                  type="text"
+                  className={`stepInput ${
+                    focusedInput === `instructionStep${index}`
+                      ? "input-focused"
+                      : ""
+                  }`}
+                  placeholder="Step"
+                  value={instruction.step}
+                  onFocus={() => handleInputFocus(`instructionStep${index}`)}
+                  onBlur={handleInputBlur}
+                  onChange={(e) =>
+                    handleInstructionChange(index, "step", e.target.value)
+                  }
+                />
+                <TextField
+                  type="text"
+                  className={`instructionInput ${
+                    focusedInput === `instructionText${index}`
+                      ? "input-focused"
+                      : ""
+                  }`}
+                  placeholder="Instruction"
+                  value={instruction.instruction}
+                  onFocus={() => handleInputFocus(`instructionText${index}`)}
+                  onBlur={handleInputBlur}
+                  onChange={(e) =>
+                    handleInstructionChange(
+                      index,
+                      "instruction",
+                      e.target.value
+                    )
+                  }
+                />
+                <IconButton
+                  className="removeButton"
+                  aria-label="delete"
+                  onClick={() => handleRemoveInstruction(index)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            ))}
+            <Fab
+              className="addButton"
+              color="primary"
+              aria-label="add"
+              onClick={handleAddInstruction}
+            >
+              <AddIcon />
+            </Fab>
+          </div>
+          <div className="formSection">
+            <h2>Categories:</h2>
+            {categories.map((category, index) => (
+              <div key={index} className="formControl spaceForInputs">
+                <TextField
+                  type="text"
+                  placeholder="Category"
+                  value={category}
+                  onFocus={() => handleInputFocus(`category${index}`)}
+                  onBlur={handleInputBlur}
+                  onChange={(e) => handleCategoryChange(index, e.target.value)}
+                />
+                <IconButton
+                  className="removeButton"
+                  aria-label="delete"
+                  onClick={() => handleRemoveCategory(index)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            ))}
+            <Fab
+              className="addButton"
+              color="primary"
+              aria-label="add"
+              onClick={handleAddCategory}
+            >
+              <AddIcon />
+            </Fab>
+          </div>
+          <div className="formSection spaceForInputs">
             <TextField
               className={`formControl ${
-                focusedInput === "recipeName" ? "input-focused" : ""
+                focusedInput === "cookingTime" ? "input-focused" : ""
               }`}
-              type="text"
-              placeholder="Recipe Name"
-              value={recipeName}
-              onFocus={() => handleInputFocus("recipeName")}
+              type="number"
+              placeholder="Cooking Time"
+              value={cookingTime}
+              onFocus={() => handleInputFocus("cookingTime")}
               onBlur={handleInputBlur}
-              onChange={(e) => setRecipeName(e.target.value)}
+              onChange={(e) => setCookingTime(e.target.value)}
             />
+            <Select
+              className={`formControl ${
+                focusedInput === "cookingTime" ? "input-focused" : ""
+              }`}
+              value={cookingTimeUnit}
+              onChange={(e) => setCookingTimeUnit(e.target.value)}
+              displayEmpty
+            >
+              <MenuItem value="" disabled>
+                Unit
+              </MenuItem>
+              <MenuItem value="Minutes">Minutes</MenuItem>
+              <MenuItem value="Hour">Hour</MenuItem>
+              <MenuItem value="Day">Day</MenuItem>
+            </Select>
             <TextField
-              className={`formControl descInput ${
-                focusedInput === "description" ? "input-focused" : ""
+              className={`formControl ${
+                focusedInput === "imgURL" ? "input-focused" : ""
               }`}
               type="text"
-              placeholder="Description"
-              value={description}
-              onFocus={() => handleInputFocus("description")}
+              placeholder="Image URL"
+              value={imgURL}
+              onFocus={() => handleInputFocus("imgURL")}
               onBlur={handleInputBlur}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setImgURL(e.target.value)}
             />
           </div>
-        </div>
-        <div className="formSection">
-          <h2>Ingredients:</h2>
-          {ingredients.map((ingredient, index) => (
-            <div key={index} className="formControl spaceForInputs">
-              <TextField
-                type="text"
-                className={`ingredientInput ${
-                  focusedInput === `ingredientName${index}` ? "input-focused" : ""
-                }`}
-                placeholder="Ingredient Name"
-                value={ingredient.name}
-                onFocus={() => handleInputFocus(`ingredientName${index}`)}
-                onBlur={handleInputBlur}
-                onChange={(e) =>
-                  handleIngredientChange(index, "name", e.target.value)
-                }
-              />
-              <Select
-                value={ingredient.measurement}
-                className={`${
-                  focusedInput === `ingredientMeasurement${index}`
-                    ? "input-focused"
-                    : ""
-                }`}
-                onFocus={() =>
-                  handleInputFocus(`ingredientMeasurement${index}`)
-                }
-                onBlur={handleInputBlur}
-                onChange={(e) =>
-                  handleIngredientChange(index, "measurement", e.target.value)
-                }
-                displayEmpty
-              >
-                <MenuItem value="" disabled>
-                  Unit
-                </MenuItem>
-                <MenuItem value="cup">cup</MenuItem>
-                <MenuItem value="ml">ml</MenuItem>
-                <MenuItem value="L">L</MenuItem>
-                <MenuItem value="Tbsp">Tbsp</MenuItem>
-                <MenuItem value="g">g</MenuItem>
-                <MenuItem value="Kg">Kg</MenuItem>
-              </Select>
-              <TextField
-                type="text"
-                className={`quantityInput ${
-                  focusedInput === `ingredientQuantity${index}`
-                    ? "input-focused"
-                    : ""
-                }`}
-                placeholder="Quantity"
-                value={ingredient.quantity}
-                onFocus={() => handleInputFocus(`ingredientQuantity${index}`)}
-                onBlur={handleInputBlur}
-                onChange={(e) =>
-                  handleIngredientChange(index, "quantity", e.target.value)
-                }
-              />
-              <IconButton
-                className="removeButton"
-                aria-label="delete"
-                onClick={() => handleRemoveIngredient(index)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          ))}
-          <Fab
-            className="addButton"
-            color="primary"
-            aria-label="add"
-            onClick={handleAddIngredient}
-          >
-            <AddIcon />
-          </Fab>
-        </div>
-        <div className="formSection">
-          <h2>Instructions:</h2>
-          {instructions.map((instruction, index) => (
-            <div key={index} className="formControl spaceForInputs">
-              <TextField
-                type="text"
-                className={`stepInput ${
-                  focusedInput === `instructionStep${index}` ? "input-focused" : ""
-                }`}
-                placeholder="Step"
-                value={instruction.step}
-                onFocus={() => handleInputFocus(`instructionStep${index}`)}
-                onBlur={handleInputBlur}
-                onChange={(e) =>
-                  handleInstructionChange(index, "step", e.target.value)
-                }
-              />
-              <TextField
-                type="text"
-                className={`instructionInput ${
-                  focusedInput === `instructionText${index}` ? "input-focused" : ""
-                }`}
-                placeholder="Instruction"
-                value={instruction.instruction}
-                onFocus={() => handleInputFocus(`instructionText${index}`)}
-                onBlur={handleInputBlur}
-                onChange={(e) =>
-                  handleInstructionChange(index, "instruction", e.target.value)
-                }
-              />
-              <IconButton
-                className="removeButton"
-                aria-label="delete"
-                onClick={() => handleRemoveInstruction(index)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          ))}
-          <Fab
-            className="addButton"
-            color="primary"
-            aria-label="add"
-            onClick={handleAddInstruction}
-          >
-            <AddIcon />
-          </Fab>
-        </div>
-        <div className="formSection">
-          <h2>Categories:</h2>
-          {categories.map((category, index) => (
-            <div key={index} className="formControl spaceForInputs">
-              <TextField
-                type="text"
-                placeholder="Category"
-                value={category}
-                onFocus={() => handleInputFocus(`category${index}`)}
-                onBlur={handleInputBlur}
-                onChange={(e) => handleCategoryChange(index, e.target.value)}
-              />
-              <IconButton
-                className="removeButton"
-                aria-label="delete"
-                onClick={() => handleRemoveCategory(index)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          ))}
-          <Fab
-            className="addButton"
-            color="primary"
-            aria-label="add"
-            onClick={handleAddCategory}
-          >
-            <AddIcon />
-          </Fab>
-        </div>
-        <div className="formSection spaceForInputs">
-          <TextField
-            className={`formControl ${
-              focusedInput === "cookingTime" ? "input-focused" : ""
-            }`}
-            type="text"
-            placeholder="Cooking Time"
-            value={cookingTime}
-            onFocus={() => handleInputFocus("cookingTime")}
-            onBlur={handleInputBlur}
-            onChange={(e) => setCookingTime(e.target.value)}
-          />
-          <Select
-            className={`formControl ${
-              focusedInput === "cookingTime" ? "input-focused" : ""
-            }`}
-            value={cookingTime}
-            onChange={(e) => setCookingTime(e.target.value)}
-            displayEmpty
-          >
-            <MenuItem value="" disabled>
-              Time
-            </MenuItem>
-            <MenuItem value="Minutes">Minutes</MenuItem>
-            <MenuItem value="Hour">Hour</MenuItem>
-            <MenuItem value="Day">Day</MenuItem>
-          </Select>
-          <TextField
-            className={`formControl ${
-              focusedInput === "imgURL" ? "input-focused" : ""
-            }`}
-            type="text"
-            placeholder="Image URL"
-            value={imgURL}
-            onFocus={() => handleInputFocus("imgURL")}
-            onBlur={handleInputBlur}
-            onChange={(e) => setImgURL(e.target.value)}
-          />
-        </div>
-        <Button type="submit" variant="contained">
-          Submit
-        </Button>
-      </form>
-    </div>
+          <Button type="submit" variant="contained">
+            Submit
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
