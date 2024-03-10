@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../../assets/images/Recipes.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -15,7 +15,7 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const controlNavbar = () => {
-    if (window.scrollY > 250) {
+    if (window.scrollY > 150) {
       setShow(true);
     } else {
       setShow(false);
@@ -36,12 +36,11 @@ const NavBar = () => {
   const handleSignOut = () => {
     localStorage.removeItem("token");
     navigate("/");
-    location.reload()
+    location.reload();
   };
   const handleSignIn = () => {
     navigate("/auth");
-   }
-
+  };
 
   return (
     <div>
@@ -64,7 +63,7 @@ const NavBar = () => {
                 <Nav.Link href="/search">Search</Nav.Link>
                 <Nav.Link href="/createR">Create Recipe</Nav.Link>
                 <Nav.Link href="/cookbooks">Cookbook</Nav.Link>
-                {user.role === 'admin' && (
+                {user.role === "admin" && (
                   <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                 )}
               </Nav>
@@ -74,10 +73,7 @@ const NavBar = () => {
                     <Link to={"/profile"}>
                       <i className="fa-regular fa-circle-user"></i>
                     </Link>
-                    <button
-                      className={`SignOutBtn `}
-                      onClick={handleSignOut}
-                    >
+                    <button className={`SignOutBtn `} onClick={handleSignOut}>
                       Sign Out
                     </button>
                   </div>
@@ -109,13 +105,10 @@ const NavBar = () => {
               </Nav>
               <Nav className="ml-auto">
                 <div className="AuthDivNav">
-                <div className="DivForSignOutBtn">
-                    <button
-                      className={`SignOutBtn `}
-                      onClick={handleSignIn}
-                    >
+                  <div className="DivForSignOutBtn">
+                    <button className={`SignOutBtn `} onClick={handleSignIn}>
                       Sign In
-                    </button> 
+                    </button>
                   </div>
                 </div>
               </Nav>
@@ -127,4 +120,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar
+export default NavBar;
