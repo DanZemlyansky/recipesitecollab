@@ -35,7 +35,8 @@ const NavBar = () => {
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
-    setUser(null);
+    navigate("/");
+    location.reload()
   };
   const handleSignIn = () => {
     navigate("/auth");
