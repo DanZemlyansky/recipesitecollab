@@ -8,7 +8,7 @@ import ProfileRecipeCard from '../../Components/ProfileRecipe/ProfileRecipeCard'
 import ProfileCookBookCard from '../../Components/ProfileCookBook/ProfileCookBookCard';
 
 function ProfilePage() {
-  const { user } = useContext(UserContext);
+  const { user , fetchUserData } = useContext(UserContext);
   const [recipe, setRecipe] = useState([]);
   const [cookbook, setCookbook] = useState([])
   const [ImgData, setImgData] = useState({});
@@ -44,25 +44,30 @@ function ProfilePage() {
     fetchCookBook();
   }, []);
 
-  // Define handleNavigate function
   const handleNavigate = (recipeId) => {
-    navigate(`/recipes/${recipeId}`); // Use navigate function to redirect
+    navigate(`/recipes/${recipeId}`); 
   };
+
+  const handleNavigateCook = (cookBookId) =>{
+    navigate(`/cookbooks/${cookBookId}`)
+  }
+
+
 
   const changeImgInfoHandler = (e) => {
     setImgData(e.target.files[0]);
+
   };
 
   const handleFile = () => {
     const formData = new FormData();
     formData.append("profileIMG", ImgData);
-    axios
-      .post(`${api}/user/image/`, formData, {
+    axios.post(`${api}/user/image/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+        
       })
-
       .catch((err) => {
         console.log(err);
       });
@@ -88,7 +93,7 @@ function ProfilePage() {
         </form>
         <div>
         <ProfileRecipeCard handleNavigate={handleNavigate} recipe={recipe}/>
-        <ProfileCookBookCard cookbook={cookbook}/>
+        <ProfileCookBookCard handleNavigateCook={handleNavigateCook} cookbook={cookbook}/>
         </div>
       </div>
     </div>

@@ -1,17 +1,16 @@
 import React from 'react'
 import './CookBookCard.css'
-import { Link } from 'react-router-dom';
 
-export default function CookBookCard({ cookbook }) {
+export default function CookBookCard({ cookbook,handleNavigate }) {
   return (
     <div className='cookbookContainer'>
       {cookbook?.map((item) => (
-       <Link to={`/cookbooks/${item._id}`}> <div key={item._id} className='cookbookcard'>
+       <div key={item._id} onClick={() => handleNavigate(item._id)} className='cookbookcard'>
           <img src={item.imgURL} alt="" />
           <h1>{item?.name}</h1>
           <h2>{item?.price}$</h2>
           <p>Created by: {item?.userId.username}</p>
-        </div> </Link>
+        </div> 
       ))}
     </div>
   )
