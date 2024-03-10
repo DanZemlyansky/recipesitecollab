@@ -121,7 +121,9 @@ export default function CreateRecipe() {
   };
 
   return (
-    <div className="rootOfCreateRecipe">
+    <div className="containerDivCreate">
+      <img className="imgimg" src="src/assets/images/shapapa.png" alt=""  />
+    <div className="rootOfCreateRecipe" >
       <h1 className="createTitle">Create Recipe</h1>
       {successMessage && <div>{successMessage}</div>}
       {errorMessage && <div>{errorMessage}</div>}
@@ -350,6 +352,7 @@ export default function CreateRecipe() {
           Submit
         </Button>
       </form>
+    </div>
     </div>
   );
 }
