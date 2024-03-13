@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary')
+const cloudinary = require('cloudinary');
 require('dotenv').config()
       
 cloudinary.config({ 
@@ -6,7 +6,6 @@ cloudinary.config({
   api_key: '334991337282489', 
   api_secret:  process.env.CloudinaryKey
 });
-
 const uploadToCloudinary = (path, folder) =>{
     return cloudinary.v2.uploader.upload(path,
         {folder ,

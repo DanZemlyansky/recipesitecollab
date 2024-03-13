@@ -18,6 +18,7 @@ function Recipes() {
       try {
         const response = await axios.get(`${api}/recipe/getRecipes`);
         setRecipe(response.data);
+        console.log(recipe);
       } catch (error) {
         console.error("Error fetching recipe:", error);
       }
